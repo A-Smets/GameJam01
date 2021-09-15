@@ -132,3 +132,28 @@ Received Import Request.
 Start importing Assets/Scenes/MaxTest.unity using Guid(d2ce9c1641857654ba4d18cd2e9dc453) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '071b1549c3cb196bcc34337cd864b180') in 0.002556 seconds
   Import took 0.008922 seconds .
 
+========================================================================
+Received Import Request.
+  Time since last request: 65.603830 seconds.
+  path: Assets/Meshes/hole_A.fbx
+  artifactKey: Guid(a39c6e2d41f8d934bb9f0327e848c257) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/hole_A.fbx using Guid(a39c6e2d41f8d934bb9f0327e848c257) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd1607e8b6ba0e17b09a375c9b1a4ab59') in 0.277965 seconds
+  Import took 0.286243 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000483 seconds.
+  path: Assets/Meshes/lamp_A.fbx
+  artifactKey: Guid(6fc5a189e46d56943a704fbdf986a145) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/lamp_A.fbx using Guid(6fc5a189e46d56943a704fbdf986a145) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c31691d93a228aa43b5ada6521ba9ef') in 0.016494 seconds
+  Import took 0.021626 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000563 seconds.
+  path: Assets/Meshes/ladder.fbx
+  artifactKey: Guid(e633a3e14cdf54c45a888f652f07c8af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/ladder.fbx using Guid(e633a3e14cdf54c45a888f652f07c8af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd27cd3e55c7e311ed81dd2dd6849603a') in 0.016823 seconds
+  Import took 0.024282 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
