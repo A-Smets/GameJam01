@@ -22,6 +22,9 @@ public class PlayerInputs : ScriptableObject
     [SerializeField, TitleGroup("Axes")] private string verticalArrows = "VerticalArrows";
     public float VerticalArrows { get { return Input.GetAxis(verticalArrows); } }
 
+    [SerializeField, TitleGroup("Axes")] private string triggerShared = "TriggerShared";
+    public float TriggerShared { get { return Input.GetAxis(triggerShared); } }
+
     [SerializeField, TitleGroup("Axes")] private string triggerLeft = "TriggerLeft";
     public float TriggerLeft { get { return Input.GetAxis(triggerLeft); } }
 
