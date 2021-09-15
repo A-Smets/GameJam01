@@ -19,17 +19,25 @@ public class Trap : MonoBehaviour
         {
             m_Table.Traps.Add(this, false);
         }
+        else
+        {
+            if (m_Table.Traps[this])
+            {
+                SpringTrap(false);
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(Utilities.CheckCollision(other.gameObject, (int)m_PlayerLayer))
         {
+            //SpringTrap();
             SetSprungValue(true);
         }
     }
 
-    //Remove this ultimately
+    //Debug
     private void OnTriggerExit(Collider other)
     {
         if (Utilities.CheckCollision(other.gameObject, (int)m_PlayerLayer))
@@ -37,9 +45,22 @@ public class Trap : MonoBehaviour
             SetSprungValue(false);
         }
     }
+    // --
+
+    private void SpringTrap(bool setValue = true)
+    {
+        m_Rend.material.color = m_ActiveColor;
+        m_Table.Traps[this] = true;
+
+        if (setValue) SetSprungValue(true);
+    }
 
     private void SetSprungValue(bool sprung)
     {
         m_Table.Traps[this] = sprung;
+
+        //Debug
+        SpringTrap(false);
+        // --
     }
 }
