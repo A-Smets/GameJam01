@@ -8,14 +8,16 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerInputs m_Inputs;
     [SerializeField] private Rigidbody m_RB;
     [SerializeField] private FloatSO m_MoveSpeed;
+    [SerializeField] private FloatSO m_RotationSpeed;
     [SerializeField] private FloatSO m_JumpForce;
     private bool m_MustJump;
-    [SerializeField, ReadOnly] private bool CanJump
-    {
-        get { return !m_MustJump && m_RB.velocity.y == 0; }
-    }
-    
 
+    private const float JUMP_MIN_VELOCITY = .05f;
+    [ShowInInspector, ReadOnly] private bool CanJump
+    {
+        get { return !m_MustJump && Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY; }
+    }
+   
     private void Update()
     {
         if (CanJump && m_Inputs.A)
@@ -27,6 +29,7 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+        RotatePlayer();
         Jump();
     }
 
@@ -40,6 +43,19 @@ public class Player : MonoBehaviour
             Vector3 direction = camForward * y + Vector3.Cross(Vector3.up, camForward) * x;
 
             m_RB.MovePosition(transform.position + direction);
+        }
+    }
+    private void RotatePlayer()
+    {
+        float x = m_Inputs.HorizontalLeft;
+        float y = m_Inputs.VerticalLeft;
+
+        if (x != 0)
+        {
+            float cameraCorrection = 90f + Camera.main.transform.rotation.eulerAngles.y;
+            float angle = Mathf.Atan2(-y, x) * Mathf.Rad2Deg + cameraCorrection;
+            Quaternion rotation = Quaternion.Euler(new Vector3(0, angle, 0));
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, m_RotationSpeed.Value * Time.smoothDeltaTime);
         }
     }
 

@@ -5,20 +5,8 @@ using Sirenix.OdinInspector;
 
 public class Trap : MonoBehaviour
 {
-    [SerializeField, ReadOnly] private bool _IsActive;
-    public bool IsActive
-    {
-        get { return _IsActive; }
-        set
-        {
-            _IsActive = value;
-
-            if (m_Rend)
-            {
-                m_Rend.material.color = _IsActive ? m_ActiveColor : m_InactiveColor;
-            }
-        }
-    }
+    [SerializeField] private TrapTable m_Table;
+    
     [SerializeField] private E_LayerCompare m_PlayerLayer = E_LayerCompare.Player;
     [Space(5)]
     [SerializeField] private Renderer m_Rend;
@@ -27,22 +15,31 @@ public class Trap : MonoBehaviour
 
     private void Awake()
     {
-        IsActive = false;
+        if (!m_Table.Traps.ContainsKey(this))
+        {
+            m_Table.Traps.Add(this, false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(Utilities.CheckCollision(other.gameObject, (int)m_PlayerLayer))
         {
-            IsActive = true;
+            SetSprungValue(true);
         }
     }
 
+    //Remove this ultimately
     private void OnTriggerExit(Collider other)
     {
         if (Utilities.CheckCollision(other.gameObject, (int)m_PlayerLayer))
         {
-            IsActive = false;
+            SetSprungValue(false);
         }
+    }
+
+    private void SetSprungValue(bool sprung)
+    {
+        m_Table.Traps[this] = sprung;
     }
 }
