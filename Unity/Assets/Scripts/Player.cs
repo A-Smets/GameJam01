@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     private const float JUMP_MIN_VELOCITY = .05f;
     [ShowInInspector, ReadOnly] private bool CanJump
     {
-        get { return !m_MustJump && Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY; }
+        get { return m_RB ? !m_MustJump && Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY : false; }
     }
    
     private void Update()
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
         float x = m_Inputs.HorizontalLeft;
         float y = m_Inputs.VerticalLeft;
 
-        if (x != 0)
+        if (x != 0 || y != 0)
         {
             float cameraCorrection = 90f + Camera.main.transform.rotation.eulerAngles.y;
             float angle = Mathf.Atan2(-y, x) * Mathf.Rad2Deg + cameraCorrection;

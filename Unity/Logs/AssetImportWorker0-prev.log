@@ -1,6 +1,156 @@
 Using pre-set license
-Built from '2020.3/staging' branch; Version is '2020.3.18f1 (a7d1c678663c) revision 10998214'; Using compiler version '192528614'; Build Type 'Release'
+Built from '2020.3/staging' branch; Version is '2020.3.10f1 (297d780c91bc) revision 2719096'; Using compiler version '192528614'; Build Type 'Release'
 OS: 'Windows 10 Home; OS build 19042.1165; Version 2009; 64bit' Language: 'fr' Physical Memory: 16332 MB
 BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
-No valid Unity Editor license found. Please activate your license.
-Exiting without the bug reporter. Application will terminate with return code 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\2020.3.10f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+D:/HEAJ_3e/GJ_1/GameJam01/Unity
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+59557
+Successfully changed project path to: D:/HEAJ_3e/GJ_1/GameJam01/Unity
+D:/HEAJ_3e/GJ_1/GameJam01/Unity
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 128.39 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.10f1 (297d780c91bc)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2020.3.10f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path D:/HEAJ_3e/GJ_1/GameJam01/Unity/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1660 SUPER (ID=0x21c4)
+    Vendor:   
+    VRAM:     5991 MB
+    Driver:   27.21.14.6089
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2020.3.10f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2020.3.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/2020.3.10f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56960
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/2020.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002503 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 150.51 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  6.591 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.005142 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 88.01 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  2.496 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.06 seconds
+Refreshing native plugins compatible for Editor in 1.27 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3528 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 179.9 MB.
+System memory in use after: 180.1 MB.
+
+Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 4011.
+Total: 39.909400 ms (FindLiveObjects: 0.702800 ms CreateObjectMapping: 0.406200 ms MarkObjects: 38.654500 ms  DeleteObjects: 0.143500 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Meshes/hole_A.fbx
+  artifactKey: Guid(a39c6e2d41f8d934bb9f0327e848c257) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/hole_A.fbx using Guid(a39c6e2d41f8d934bb9f0327e848c257) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '70811ba0e3e704439d34dde130adac86') in 0.602707 seconds
+  Import took 0.612635 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000338 seconds.
+  path: Assets/Meshes/lamp_A.fbx
+  artifactKey: Guid(6fc5a189e46d56943a704fbdf986a145) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/lamp_A.fbx using Guid(6fc5a189e46d56943a704fbdf986a145) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e77c4c8b9ab154d005bdc2a662c60f0') in 0.017662 seconds
+  Import took 0.024339 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000289 seconds.
+  path: Assets/Meshes/wooden_palet.fbx
+  artifactKey: Guid(37e44e8f2fe2ec944af81bc6ac9a2163) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/wooden_palet.fbx using Guid(37e44e8f2fe2ec944af81bc6ac9a2163) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3aebc14eab05664cfeb6c463599f08b') in 0.017164 seconds
+  Import took 0.023454 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000198 seconds.
+  path: Assets/Meshes/ladder.fbx
+  artifactKey: Guid(e633a3e14cdf54c45a888f652f07c8af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/ladder.fbx using Guid(e633a3e14cdf54c45a888f652f07c8af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ada633c3e89f5bf38c4bf6d541809d4') in 0.015997 seconds
+  Import took 0.021360 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000206 seconds.
+  path: Assets/Meshes/barel_A.fbx
+  artifactKey: Guid(4476290063882894ea60abbf69119688) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/barel_A.fbx using Guid(4476290063882894ea60abbf69119688) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1130f29d32d187ff110f38b5285092e2') in 0.016002 seconds
+  Import took 0.021670 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.004925 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.71 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.789 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.75 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3216 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 158.7 MB.
+System memory in use after: 159.0 MB.
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 4099.
+Total: 27.578500 ms (FindLiveObjects: 0.442400 ms CreateObjectMapping: 0.227600 ms MarkObjects: 26.871300 ms  DeleteObjects: 0.035300 ms)
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.005078 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 0.63 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.473 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 0.68 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3216 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 158.8 MB.
+System memory in use after: 159.1 MB.
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 4101.
+Total: 25.027000 ms (FindLiveObjects: 0.331600 ms CreateObjectMapping: 0.148700 ms MarkObjects: 24.513900 ms  DeleteObjects: 0.031600 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 43.695326 seconds.
+  path: Assets/Meshes/sewer_wall_hole.fbx
+  artifactKey: Guid(21d89b2e40e3e8c419c11c93130caab2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/sewer_wall_hole.fbx using Guid(21d89b2e40e3e8c419c11c93130caab2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6998610b221f8c6bb0c38849daee79b9') in 0.419349 seconds
+  Import took 0.424950 seconds .
+
