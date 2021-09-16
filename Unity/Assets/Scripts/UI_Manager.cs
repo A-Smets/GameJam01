@@ -10,8 +10,10 @@ public class UI_Manager : MonoBehaviour
     [SerializeField] private PlayerInputs m_Inputs;
     [SerializeField, TitleGroup("In-Game")] private GameObject m_PauseMenu;
     [SerializeField, TitleGroup("In-Game")] private GameObject m_PauseFirstSelect;
-    [SerializeField, TitleGroup("In-Game")] private GameObject m_GameOverMenu;
+    [SerializeField, TitleGroup("In-Game"), Space(5)] private GameObject m_GameOverMenu;
     [SerializeField, TitleGroup("In-Game")] private GameObject m_GameOverFirstSelect;
+    [SerializeField, TitleGroup("In-Game"), Space(5)] private GameObject m_VictoryMenu;
+    [SerializeField, TitleGroup("In-Game")] private GameObject m_VictoryFirstSelect;
 
     private EventSystem m_EventSystem;
 
@@ -34,6 +36,12 @@ public class UI_Manager : MonoBehaviour
     {
         m_GameOverMenu.SetActive(active > 0);
         if (active > 0) SetSelected(m_GameOverFirstSelect);
+    }
+
+    public void SetVictoryMenu(int active)
+    {
+        m_VictoryMenu.SetActive(active > 0);
+        if (active > 0) SetSelected(m_VictoryFirstSelect);
     }
 
     private void SetSelected(GameObject selected)

@@ -9,13 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c1cb29cfd3ed24f9d9de5f00c05f83, type: 3}
-  m_Name: PlayerRotationSpeed
+  m_Script: {fileID: 11500000, guid: aa7b32694135adc4c9bd0448281d128d, type: 3}
+  m_Name: VictoryEvent
   m_EditorClassIdentifier: 
-  constantValue: 0
-  clamping: 1
-  minSO: {fileID: 0}
-  maxSO: {fileID: 0}
-  minConst: 12
-  maxConst: 100
-  constant: 0
+  listeners: []

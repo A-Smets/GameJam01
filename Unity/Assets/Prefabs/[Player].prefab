@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 1898753754444273607}
   - component: {fileID: 7473951142769259324}
   - component: {fileID: 5115941142105979489}
+  - component: {fileID: 349190117867764772}
   m_Layer: 6
   m_Name: '[Player]'
   m_TagString: Entity
@@ -176,6 +177,35 @@ MonoBehaviour:
   m_MoveSpeed: {fileID: 11400000, guid: 1770ca5d33829ab4fb538bcd35a2e194, type: 2}
   m_RotationSpeed: {fileID: 11400000, guid: 24b625c7d016e6b4995c2aeb2ad6dc6b, type: 2}
   m_JumpForce: {fileID: 11400000, guid: 43f93cdda4e3fed40a73db78e377374d, type: 2}
+--- !u!114 &349190117867764772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3283946022221742830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c8947c0defdb044485d13f46a233356, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventResponses:
+  - gameEvent: {fileID: 11400000, guid: 673a22b9279e21749bfd2e36132d6a99, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5115941142105979489}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: OnVictory
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3283946023534701605
 GameObject:
   m_ObjectHideFlags: 0

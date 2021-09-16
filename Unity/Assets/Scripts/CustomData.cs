@@ -24,7 +24,8 @@ public enum E_LayerCompare
     Enemy = 7,
     Neutral = 8,
     Environment = 9,
-    Trap =10
+    Trap = 10,
+    Interactor = 11
 }
 
 /// <summary>

@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private FloatSO m_RotationSpeed;
     [SerializeField] private FloatSO m_JumpForce;
     private bool m_MustJump;
-    private bool m_Alive = true;
+    private bool m_Active = true;
     private const float JUMP_MIN_VELOCITY = .05f;
     [ShowInInspector, ReadOnly] private bool CanJump
     {
@@ -21,18 +21,18 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
-        m_Alive = true;
+        m_Active = true;
     }
     private void Update()
     {
-        if (!m_Alive) return;
+        if (!m_Active) return;
         AuthorizeJump();
 
         if (m_Inputs.Y) KillPlayer();
     }
     private void FixedUpdate()
     {
-        if (!m_Alive) return;
+        if (!m_Active) return;
         MovePlayer();
         RotatePlayer();
         Jump();
@@ -42,8 +42,9 @@ public class Player : MonoBehaviour
     {
         if (m_RB && m_Inputs)
         {
-            float x = m_Inputs.HorizontalLeft * m_MoveSpeed.Value * Time.deltaTime;
-            float y = m_Inputs.VerticalLeft * m_MoveSpeed.Value * Time.deltaTime;
+            float speed = (m_MoveSpeed.Value > m_MoveSpeed.MinValue ? m_MoveSpeed.Value : m_MoveSpeed.MinValue) * Time.deltaTime;
+            float x = m_Inputs.HorizontalLeft * speed;
+            float y = m_Inputs.VerticalLeft * speed;
             Vector3 camForward = Vector3.Normalize(new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z));
             Vector3 direction = camForward * y + Vector3.Cross(Vector3.up, camForward) * x;
 
@@ -60,7 +61,8 @@ public class Player : MonoBehaviour
             float cameraCorrection = 90f + Camera.main.transform.rotation.eulerAngles.y;
             float angle = Mathf.Atan2(-y, x) * Mathf.Rad2Deg + cameraCorrection;
             Quaternion rotation = Quaternion.Euler(new Vector3(0, angle, 0));
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, m_RotationSpeed.Value * Time.smoothDeltaTime);
+            float speed = (m_RotationSpeed.Value > m_RotationSpeed.MinValue ? m_RotationSpeed.Value : m_RotationSpeed.MinValue) * Time.smoothDeltaTime;
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed);
         }
     }
     private void AuthorizeJump()
@@ -74,7 +76,8 @@ public class Player : MonoBehaviour
     {
         if (m_MustJump)
         {
-            m_RB.AddForce(Vector3.up * m_JumpForce.Value, ForceMode.Impulse);
+            float force = m_JumpForce.Value > m_JumpForce.MinValue ? m_JumpForce.Value : m_JumpForce.MinValue;
+            m_RB.AddForce(Vector3.up * force , ForceMode.Impulse);
             m_MustJump = false;
         }
     }
@@ -82,8 +85,13 @@ public class Player : MonoBehaviour
     public void KillPlayer()
     {
         //Death animation
-        m_Alive = false;
+        m_Active = false;
 
         m_DeathEvent.Raise();   //Move to end of death animation
+    }
+
+    public void OnVictory()
+    {
+        m_Active = false;
     }
 }
