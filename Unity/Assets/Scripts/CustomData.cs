@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Used to clamp the Value of a FloatSO
@@ -23,7 +24,8 @@ public enum E_LayerCompare
     Enemy = 7,
     Neutral = 8,
     Environment = 9,
-    Trap =10
+    Trap = 10,
+    Interactor = 11
 }
 
 /// <summary>
@@ -35,4 +37,20 @@ public enum E_TagCompare
     Entity,
     Trigger,
     TrapProper
+}
+
+[System.Serializable] public struct GameEventResponse
+{
+    public GameEvent gameEvent;
+    public UnityEvent response;
+
+    public void Register()
+    {
+        gameEvent.Register(response);
+    }
+
+    public void Unregister()
+    {
+        gameEvent.Unregister(response);
+    }
 }

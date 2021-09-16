@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69c1cb29cfd3ed24f9d9de5f00c05f83, type: 3}
   m_Name: PlayerRotationSpeed
   m_EditorClassIdentifier: 
-  listeners: []
   constantValue: 0
-  clamping: 0
+  clamping: 1
   minSO: {fileID: 0}
   maxSO: {fileID: 0}
-  minConst: 0
-  maxConst: 1
+  minConst: 12
+  maxConst: 100
   constant: 0
