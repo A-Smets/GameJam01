@@ -27,6 +27,7 @@ public class FloatSO : GameEvent
         }
         set
         {
+            Debug.Log("Attempted to set " + name + " to " + value);
             switch (clamping)
             {
                 case E_ClampingMethod.None:
@@ -52,17 +53,17 @@ public class FloatSO : GameEvent
                     break;
             }
 
-#if UNITY_EDITOR
-            if (!constantValue && UnityEditor.EditorApplication.isPlaying)
-            {
-                Raise();
-            }
-#else
+            #if UNITY_EDITOR
+                if (!constantValue && UnityEditor.EditorApplication.isPlaying)
+                {
+                    Raise();
+                }
+            #else
                 if (!constantValue && Application.isPlaying)
                 {
                     Raise();
                 }
-#endif
+            #endif
         }
     }
 

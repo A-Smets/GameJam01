@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 public class Trap_Test : Trap
 {
-    [Space(10)]
-    [SerializeField] private Renderer m_Rend;
-    [SerializeField] private Color m_InactiveColor = new Color(.5f, .5f, .5f, 1f);
-    [SerializeField] private Color m_ActiveColor = new Color(1f, 0f, 0f, 1f);
+    [SerializeField, TitleGroup("Type Specific")] private Renderer m_Rend;
+    [SerializeField, TitleGroup("Type Specific")] private Color m_ActivatedColor = new Color(1f, 0f, 0f, 1f);
 
-    protected override void SpringTrap(bool spring = true)
+    protected override void SpringTrap()
     {
-        m_Rend.material.color = spring ? m_ActiveColor : m_InactiveColor;
+        m_Rend.material.color = m_ActivatedColor;
     }
 }

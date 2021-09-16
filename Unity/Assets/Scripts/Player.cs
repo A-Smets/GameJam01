@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     {
         if (!m_Alive) return;
         AuthorizeJump();
+
+        if (m_Inputs.Y) KillPlayer();
     }
     private void FixedUpdate()
     {
@@ -79,10 +81,9 @@ public class Player : MonoBehaviour
 
     public void KillPlayer()
     {
-        //Set menu ?
-        //Reset scene (or exit if menu)
-        Debug.Log("Player has died ! How sad...");
-        m_DeathEvent.Raise();
+        //Death animation
         m_Alive = false;
+
+        m_DeathEvent.Raise();   //Move to end of death animation
     }
 }

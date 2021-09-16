@@ -5,14 +5,13 @@ using Sirenix.OdinInspector;
 
 public abstract class Trap : MonoBehaviour
 {
-    [SerializeField] private BoolSO m_WasSprung;
-    [SerializeField] private Collider m_TriggerCollider;
-    [SerializeField] private E_LayerCompare m_PlayerLayer = E_LayerCompare.Player;
-    [SerializeField] private bool m_UnspringDEBUG;
+    [SerializeField, TitleGroup("Base Trap Data")] private BoolSO m_WasSprung;
+    [SerializeField, TitleGroup("Base Trap Data")] private Collider m_TriggerCollider;
+    [SerializeField, TitleGroup("Base Trap Data")] private E_LayerCompare m_PlayerLayer = E_LayerCompare.Player;
 
     private void Awake()
     {
-        if (!m_UnspringDEBUG && m_WasSprung.Value) Activate();
+        if (m_WasSprung.Value) Activate();
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -26,20 +25,13 @@ public abstract class Trap : MonoBehaviour
 
         }
     }
-    private void OnTriggerExit(Collider other)
+
+    private void Activate()
     {
-        if (Utilities.CheckCollision(other.gameObject, (int)m_PlayerLayer))
-        {
-            if (m_UnspringDEBUG) Activate(false);
-        }
+        m_WasSprung.Value = true;
+        m_TriggerCollider.enabled = false;
+        SpringTrap();
     }
 
-    private void Activate(bool spring = true)
-    {
-        m_WasSprung.Value = spring;
-        m_TriggerCollider.enabled = !spring;
-        SpringTrap(spring);
-    }
-
-    protected abstract void SpringTrap(bool spring = true);
+    protected abstract void SpringTrap();
 }
