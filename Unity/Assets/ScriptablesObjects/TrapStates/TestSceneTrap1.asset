@@ -9,14 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69c1cb29cfd3ed24f9d9de5f00c05f83, type: 3}
-  m_Name: PlayerJumpForce
+  m_Script: {fileID: 11500000, guid: 6f0539f941e735544b6c0881623d6f32, type: 3}
+  m_Name: TestSceneTrap1
   m_EditorClassIdentifier: 
-  listeners: []
-  constantValue: 0
-  clamping: 0
-  minSO: {fileID: 0}
-  maxSO: {fileID: 0}
-  minConst: 0
-  maxConst: 1
-  constant: 8

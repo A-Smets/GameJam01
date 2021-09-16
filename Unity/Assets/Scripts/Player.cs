@@ -6,28 +6,31 @@ using Sirenix.OdinInspector;
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerInputs m_Inputs;
+    [SerializeField] private GameEvent m_DeathEvent;
     [SerializeField] private Rigidbody m_RB;
     [SerializeField] private FloatSO m_MoveSpeed;
     [SerializeField] private FloatSO m_RotationSpeed;
     [SerializeField] private FloatSO m_JumpForce;
     private bool m_MustJump;
-
+    private bool m_Alive = true;
     private const float JUMP_MIN_VELOCITY = .05f;
     [ShowInInspector, ReadOnly] private bool CanJump
     {
         get { return m_RB ? !m_MustJump && Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY : false; }
     }
-   
+
+    private void Awake()
+    {
+        m_Alive = true;
+    }
     private void Update()
     {
-        if (CanJump && m_Inputs.A)
-        {
-            m_MustJump = true;
-        }   
+        if (!m_Alive) return;
+        AuthorizeJump();
     }
-
     private void FixedUpdate()
     {
+        if (!m_Alive) return;
         MovePlayer();
         RotatePlayer();
         Jump();
@@ -58,7 +61,13 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, m_RotationSpeed.Value * Time.smoothDeltaTime);
         }
     }
-
+    private void AuthorizeJump()
+    {
+        if (CanJump && m_Inputs.A)
+        {
+            m_MustJump = true;
+        }
+    }
     private void Jump()
     {
         if (m_MustJump)
@@ -66,5 +75,14 @@ public class Player : MonoBehaviour
             m_RB.AddForce(Vector3.up * m_JumpForce.Value, ForceMode.Impulse);
             m_MustJump = false;
         }
+    }
+
+    public void KillPlayer()
+    {
+        //Set menu ?
+        //Reset scene (or exit if menu)
+        Debug.Log("Player has died ! How sad...");
+        m_DeathEvent.Raise();
+        m_Alive = false;
     }
 }

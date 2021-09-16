@@ -171,6 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Inputs: {fileID: 11400000, guid: 12daec0d4b0cbe84288a6bdbf8660628, type: 2}
+  m_DeathEvent: {fileID: 11400000, guid: 0044523fc78fee04aa08886b4d4d6e5d, type: 2}
   m_RB: {fileID: 1898753754444273607}
   m_MoveSpeed: {fileID: 11400000, guid: 1770ca5d33829ab4fb538bcd35a2e194, type: 2}
   m_RotationSpeed: {fileID: 11400000, guid: 24b625c7d016e6b4995c2aeb2ad6dc6b, type: 2}
