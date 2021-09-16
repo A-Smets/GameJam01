@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 56b41a20d5a6cb445b919c45f2a35ea4
+guid: 5c85cf4a69b32794eb40cf52f4ee6973
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: pieges
+    second: {fileID: 2100000, guid: 0ae37e850d01d4346b40573f16dcbe6f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
