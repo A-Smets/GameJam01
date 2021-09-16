@@ -666,3 +666,124 @@ System memory in use after: 156.6 MB.
 Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 4078.
 Total: 24.485000 ms (FindLiveObjects: 0.307200 ms CreateObjectMapping: 0.171700 ms MarkObjects: 23.978600 ms  DeleteObjects: 0.026000 ms)
 
+========================================================================
+Received Import Request.
+  Time since last request: 809.706699 seconds.
+  path: Assets/Meshes/sm_mushroom 1.fbx
+  artifactKey: Guid(d1e0c8139c7ee6d46afac31c48eb952a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/sm_mushroom 1.fbx using Guid(d1e0c8139c7ee6d46afac31c48eb952a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2f6f2d38725c517ddf9dde8b1ad6e8b') in 0.860193 seconds
+  Import took 0.865897 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 26.958678 seconds.
+  path: Assets/Meshes/sm_mushroom.fbx
+  artifactKey: Guid(91efcdd2bd93d8f4ba3c469df890feda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/sm_mushroom.fbx using Guid(91efcdd2bd93d8f4ba3c469df890feda) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c0a4c6667060eae8d595e88850e78bcc') in 0.018867 seconds
+  Import took 0.024408 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 134.710116 seconds.
+  path: Assets/Meshes/sm_mushroom-2.obj
+  artifactKey: Guid(3c2feed216ef03642b87a36643545da1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/sm_mushroom-2.obj using Guid(3c2feed216ef03642b87a36643545da1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05db0034f888b4cea9bd17e39f53b5f6') in 0.022557 seconds
+  Import took 0.028090 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 141.711799 seconds.
+  path: Assets/Meshes/sm_mushroom-2.obj
+  artifactKey: Guid(3c2feed216ef03642b87a36643545da1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Meshes/sm_mushroom-2.obj using Guid(3c2feed216ef03642b87a36643545da1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '156d53ca847e0aaf0d6166734de04e86') in 0.031902 seconds
+  Import took 0.037686 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2730.237167 seconds.
+  path: Assets/WIP
+  artifactKey: Guid(f8e5df5f46eaac14b99026f9c2faedc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/WIP using Guid(f8e5df5f46eaac14b99026f9c2faedc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8d70fb26471517d5051fe067e53a062') in 0.002279 seconds
+  Import took 0.011635 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 45.457492 seconds.
+  path: Assets/WIP/Mushroom_Shd.shader
+  artifactKey: Guid(d1853aae3b8cef246bafeea6cae93416) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/WIP/Mushroom_Shd.shader using Guid(d1853aae3b8cef246bafeea6cae93416) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6531e798d898e68d63512d6156a2b014') in 0.005105 seconds
+  Import took 0.010791 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.135024 seconds.
+  path: Assets/WIP/Mushroom_Shd.shader
+  artifactKey: Guid(d1853aae3b8cef246bafeea6cae93416) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/WIP/Mushroom_Shd.shader using Guid(d1853aae3b8cef246bafeea6cae93416) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6531e798d898e68d63512d6156a2b014') in 0.002910 seconds
+  Import took 0.009053 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 175.360819 seconds.
+  path: Assets/WIP/téléchargement.jfif
+  artifactKey: Guid(8b0385027a9ab0f49a519df77d546e09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/WIP/téléchargement.jfif using Guid(8b0385027a9ab0f49a519df77d546e09) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b9726cf2b2aea509af23ddfbe1768679') in 0.008112 seconds
+  Import took 0.014200 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 73.136255 seconds.
+  path: Assets/WIP/clouds_2.png
+  artifactKey: Guid(6668b5c54ac2a9f4ebceea6d968cf7d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/WIP/clouds_2.png using Guid(6668b5c54ac2a9f4ebceea6d968cf7d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c40aacb33a584813612f3f69b5a647d6') in 0.018949 seconds
+  Import took 0.025257 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 549.699843 seconds.
+  path: Assets/WIP/Mushroom_Shd.shader
+  artifactKey: Guid(d1853aae3b8cef246bafeea6cae93416) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/WIP/Mushroom_Shd.shader using Guid(d1853aae3b8cef246bafeea6cae93416) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ef47bec94db41096d442cc690030c84') in 0.003174 seconds
+  Import took 0.009978 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.214198 seconds.
+  path: Assets/WIP/Mushroom_Shd.shader
+  artifactKey: Guid(d1853aae3b8cef246bafeea6cae93416) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/WIP/Mushroom_Shd.shader using Guid(d1853aae3b8cef246bafeea6cae93416) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2ef47bec94db41096d442cc690030c84') in 0.003022 seconds
+  Import took 0.009123 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 191.525091 seconds.
+  path: Assets/ScriptablesObjects/Main Camera Profile.asset
+  artifactKey: Guid(fc00cc333d738d44ab4a183958ec1d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptablesObjects/Main Camera Profile.asset using Guid(fc00cc333d738d44ab4a183958ec1d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b10ec2ed404ce48590aaadd2efc3384e') in 0.006153 seconds
+  Import took 0.013033 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005233 seconds.
+  path: Assets/ScriptablesObjects/Main Camera Profile.asset
+  artifactKey: Guid(fc00cc333d738d44ab4a183958ec1d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/ScriptablesObjects/Main Camera Profile.asset using Guid(fc00cc333d738d44ab4a183958ec1d90) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b10ec2ed404ce48590aaadd2efc3384e') in 0.002241 seconds
+  Import took 0.008022 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 194.245882 seconds.
+  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/ParticlesUnlit.mat
+  artifactKey: Guid(e823cd5b5d27c0f4b8256e7c12ee3e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/ParticlesUnlit.mat using Guid(e823cd5b5d27c0f4b8256e7c12ee3e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6d3bac30e0c3da08768836858914317') in 0.019914 seconds
+  Import took 0.027086 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.005265 seconds.
+  path: Packages/com.unity.render-pipelines.universal/Runtime/Materials/ParticlesUnlit.mat
+  artifactKey: Guid(e823cd5b5d27c0f4b8256e7c12ee3e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Packages/com.unity.render-pipelines.universal/Runtime/Materials/ParticlesUnlit.mat using Guid(e823cd5b5d27c0f4b8256e7c12ee3e6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a6d3bac30e0c3da08768836858914317') in 0.014508 seconds
+  Import took 0.020751 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
