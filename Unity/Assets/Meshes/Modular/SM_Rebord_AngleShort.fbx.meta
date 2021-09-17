@@ -3,7 +3,12 @@ guid: 060f8bd311f36384c8e1e0e27d12f338
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Beton
+    second: {fileID: 2100000, guid: 479790e8aeb08c24b87d6332d8d82991, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

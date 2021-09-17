@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mi_Concrete
-  m_Shader: {fileID: -6465566751694194690, guid: 6928b2bfb9826b94eb9f9e29e9734b56,
+  m_Name: Mi_Barrel_B
+  m_Shader: {fileID: -6465566751694194690, guid: cef173dd4ca96ec44b525ead77f17b3b,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -21,15 +21,27 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_22f41136e1804c94a6ac2a74082d4e49:
-        m_Texture: {fileID: 2800000, guid: c850d8c806c7f3445a16148670f354d6, type: 3}
+        m_Texture: {fileID: 2800000, guid: fec872394989f2f49aad6f6f5f3f5a9b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_3106ac85bc49484aa77ac1be526bc22f:
+        m_Texture: {fileID: 2800000, guid: 1f47487107909614bb1c6cfc09f7b1ef, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_42bfa514946c44c5a914186e2bdce366:
-        m_Texture: {fileID: 2800000, guid: 00bd9eccf9ae8544fa2931202cee9180, type: 3}
+        m_Texture: {fileID: 2800000, guid: 313ed61de366c8e47b33c73f7afc1678, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - Texture2D_4d43cd5ca3314247bcca102e4e460d89:
-        m_Texture: {fileID: 2800000, guid: 326530f8d792eef43b39964f22abed04, type: 3}
+        m_Texture: {fileID: 2800000, guid: 688f03817614d92449b5db56534df72f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_93e07dcadfe84392b38c55979e1c4b65:
+        m_Texture: {fileID: 2800000, guid: 13fa9a978ab4b614da9c72389c0ad572, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Texture2D_9fdd42ee12a04f81bbda7ac944818e3f:
+        m_Texture: {fileID: 2800000, guid: e3187899b527169428fe17169f157ae8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
@@ -89,6 +101,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_20104dcad5ba4734aa20c1e415e6d4e5: 1
+    - Vector1_4e442f0b05d34c4981ab00c32165105c: 1
+    - Vector1_528d491cbca14074ad46fd693633b7e4: 1
+    - Vector1_5534ea490eb842079f7e126fd406bc52: 0
+    - Vector1_ce667c27cb3a4efa965cb894207f0640: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -116,6 +133,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_8c1af615b3a34d5a99bd021f757b9c1c: {r: 1, g: 1, b: 1, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
