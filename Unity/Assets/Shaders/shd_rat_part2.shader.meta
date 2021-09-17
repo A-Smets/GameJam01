@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e4d02078ccc426d4aae5274357d8c64f
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _GJ_Rat_low_Rat_Body_BaseColor: {fileID: 2800000, guid: 882a792d1704c8842b78422461f9a40c,
+      type: 3}
+  - _GJ_Rat_low_Rat_Body_Normal: {fileID: 2800000, guid: adc64a92d240cda42b68c664f17e036b,
+      type: 3}
+  - _GJ_Rat_low_Rat_Body_OcclusionRoughnessMetallic: {fileID: 2800000, guid: 8bc09eb37e8f5f84b9638279e1c1cc6b,
+      type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

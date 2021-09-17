@@ -16,7 +16,7 @@ public class SteamTrap : Trap
         m_PreActivationVFX.SetActive(false);
     }
 
-    protected override void SetToPostActivation()
+    protected override void SetPostActivate()
     {
         m_PreActivationVFX.SetActive(false);
         m_ActivationVFX.SetActive(false);
