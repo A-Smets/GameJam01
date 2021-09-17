@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &7246471509518190776
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014233598478241831}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.07604416
+  m_Height: 0.21826391
+  m_Direction: 1
+  m_Center: {x: -0.000000007450581, y: 0.109131955, z: 0}
+--- !u!65 &2761815169448088087
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169767133117233718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.29285383, y: 0.03837806, z: 0.3303982}
+  m_Center: {x: 0.000000014901161, y: 0.01918903, z: 0}
 --- !u!1 &2492345163528202930
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +38,7 @@ GameObject:
   - component: {fileID: 4986906643671988317}
   - component: {fileID: 2751659446576751293}
   - component: {fileID: 9024978091885375080}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pf_palet_var1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,6 +174,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!136 &1693176793114488789
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2603634106771722657}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.07604416
+  m_Height: 0.21826391
+  m_Direction: 1
+  m_Center: {x: -0.000000007450581, y: 0.109131955, z: 0}
+--- !u!136 &7956908913069972674
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4833489470708707958}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.07604415
+  m_Height: 0.21826391
+  m_Direction: 1
+  m_Center: {x: -0.00000000745058, y: 0.109131955, z: 0}
 --- !u!1001 &203262060635811190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,8 +269,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_barrel_a (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b77f6dcb8a6615144a370789eb61f4b4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b77f6dcb8a6615144a370789eb61f4b4, type: 3}
+--- !u!1 &1014233598478241831 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b77f6dcb8a6615144a370789eb61f4b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 203262060635811190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &385225688849812125 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b77f6dcb8a6615144a370789eb61f4b4,
@@ -289,8 +355,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_wooden_palet_a
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f34daa237bedd034898a61ef02ae4287,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f34daa237bedd034898a61ef02ae4287, type: 3}
+--- !u!1 &1169767133117233718 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f34daa237bedd034898a61ef02ae4287,
+    type: 3}
+  m_PrefabInstance: {fileID: 2088175799192258407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1977090879844868236 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f34daa237bedd034898a61ef02ae4287,
@@ -364,8 +441,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_barrel_a
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b77f6dcb8a6615144a370789eb61f4b4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b77f6dcb8a6615144a370789eb61f4b4, type: 3}
+--- !u!1 &2603634106771722657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b77f6dcb8a6615144a370789eb61f4b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2945528691141471472}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3416586974805887771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b77f6dcb8a6615144a370789eb61f4b4,
@@ -439,8 +527,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_barrel_a (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b77f6dcb8a6615144a370789eb61f4b4,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b77f6dcb8a6615144a370789eb61f4b4, type: 3}
+--- !u!1 &4833489470708707958 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b77f6dcb8a6615144a370789eb61f4b4,
+    type: 3}
+  m_PrefabInstance: {fileID: 5752619278971162407}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5215117499265099980 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b77f6dcb8a6615144a370789eb61f4b4,

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9218212762853879727}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: pf_nails_var1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,6 +113,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_nail_a (15)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
 --- !u!4 &1129188380604038081 stripped
@@ -187,6 +192,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sm_nail_a (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
@@ -263,6 +273,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_nail_a (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
 --- !u!4 &617036012247774444 stripped
@@ -337,6 +352,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sm_nail_a (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
@@ -413,6 +433,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_nail_a (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
 --- !u!4 &1412024049115910276 stripped
@@ -487,6 +512,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sm_nail_a (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
@@ -563,6 +593,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_nail_a (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
 --- !u!4 &4876548528442651198 stripped
@@ -637,6 +672,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sm_nail_a (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
@@ -713,6 +753,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_nail_a
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
 --- !u!4 &5431909039518208811 stripped
@@ -787,6 +832,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sm_nail_a (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
@@ -863,6 +913,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_nail_a (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
 --- !u!4 &6011004983971979397 stripped
@@ -937,6 +992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sm_nail_a (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
@@ -1013,6 +1073,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_nail_a (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
 --- !u!4 &7090282994229295954 stripped
@@ -1087,6 +1152,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sm_nail_a (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
@@ -1163,6 +1233,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_nail_a (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
 --- !u!4 &8377063456718825235 stripped
@@ -1237,6 +1312,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sm_nail_a (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 051f32f104f3f7441b246a460a80f22a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051f32f104f3f7441b246a460a80f22a, type: 3}
