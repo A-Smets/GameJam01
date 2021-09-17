@@ -5,17 +5,26 @@ using Sirenix.OdinInspector;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Animator m_Animator;
-    [SerializeField] private Rigidbody m_RB;
-    [SerializeField] private PlayerInputs m_Inputs;
-    [SerializeField] private GameEvent m_DeathEvent;
-    [SerializeField] private FloatSO m_MoveSpeed;
-    [SerializeField] private FloatSO m_RotationSpeed;
-    [SerializeField] private FloatSO m_JumpForce;
+    [SerializeField, TitleGroup("Components")] private Rigidbody m_RB;
+    [SerializeField, TitleGroup("Components")] private PlayerInputs m_Inputs;
+    [SerializeField, TitleGroup("Components")] private GameEvent m_DeathEvent;
+    [SerializeField, TitleGroup("Components")] private FloatSO m_MoveSpeed;
+    [SerializeField, TitleGroup("Components")] private FloatSO m_RotationSpeed;
+    [SerializeField, TitleGroup("Components")] private FloatSO m_JumpForce;
+    [SerializeField, TitleGroup("Animation")] private Animator m_Animator;
+    [SerializeField, TitleGroup("Animation")] private string m_AnimatorMove;
+    [SerializeField, TitleGroup("Animation")] private string m_AnimatorJumpStart;
+    [SerializeField, TitleGroup("Animation")] private string m_AnimatorJumpEnd;
+    [SerializeField, TitleGroup("Animation")] private string m_AnimatorDeath;
+    [SerializeField, TitleGroup("Animation")] private string m_AnimatorIdleBreak;
+    [SerializeField, TitleGroup("Animation")] private float m_IdleBreakThreshold = 3;
+    [SerializeField, TitleGroup("Animation"), ReadOnly] private float m_IdleBreakTimer;
     private bool m_MustJump;
+    private bool m_IsJumping;
+    private bool m_IncrementIdleTimer = true;
     private bool m_Active = true;
     private const float JUMP_MIN_VELOCITY = .05f;
-    [ShowInInspector, ReadOnly] private bool CanJump
+    [ShowInInspector, ReadOnly, TitleGroup("Components")] private bool CanJump
     {
         get { return m_RB ? !m_MustJump && Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY : false; }
     }
@@ -36,7 +45,6 @@ public class Player : MonoBehaviour
         if (!m_Active) return;
         MovePlayer();
         RotatePlayer();
-        Jump();
     }
 
     private void MovePlayer()
@@ -44,14 +52,31 @@ public class Player : MonoBehaviour
         if (m_RB && m_Inputs)
         {
             float speed = (m_MoveSpeed.Value > m_MoveSpeed.MinValue ? m_MoveSpeed.Value : m_MoveSpeed.MinValue) * Time.deltaTime;
-            float x = m_Inputs.HorizontalLeft * speed;
-            float y = m_Inputs.VerticalLeft * speed;
+            float x = m_Inputs.HorizontalLeft;
+            float y = m_Inputs.VerticalLeft;
             Vector3 camForward = Vector3.Normalize(new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z));
-            Vector3 direction = camForward * y + Vector3.Cross(Vector3.up, camForward) * x;
+            Vector3 direction = camForward * y * speed + Vector3.Cross(Vector3.up, camForward) * x * speed;
 
             m_RB.MovePosition(transform.position + direction);
+            float magnitude = new Vector2(x, y).magnitude;
+            m_Animator.SetFloat(m_AnimatorMove, magnitude);
+
+            if (m_IncrementIdleTimer && magnitude == 0) m_IdleBreakTimer += Time.deltaTime;
+            if (m_IdleBreakTimer >= m_IdleBreakThreshold)
+            {
+                m_Animator.SetTrigger(m_AnimatorIdleBreak);
+                m_IdleBreakTimer = 0;
+                m_IncrementIdleTimer = false;
+                Invoke("AuthorizeIdleTimer", m_IdleBreakThreshold);
+            }
         }
     }
+
+    private void AuthorizeIdleTimer()
+    {
+        m_IncrementIdleTimer = true;
+    }
+
     private void RotatePlayer()
     {
         float x = m_Inputs.HorizontalLeft;
@@ -64,31 +89,36 @@ public class Player : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(new Vector3(0, angle, 0));
             float speed = (m_RotationSpeed.Value > m_RotationSpeed.MinValue ? m_RotationSpeed.Value : m_RotationSpeed.MinValue) * Time.smoothDeltaTime;
             transform.rotation = Quaternion.Slerp(transform.rotation, rotation, speed);
+            m_IdleBreakTimer = 0;
         }
     }
     private void AuthorizeJump()
     {
-        if (CanJump && m_Inputs.A)
+        if (CanJump && m_Inputs.A) m_Animator.SetTrigger(m_AnimatorJumpStart);
+
+        //Land -> shouldn't be here but oh well
+        if (m_IsJumping && Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY * 10)
         {
-            m_MustJump = true;
+            m_Animator.SetTrigger(m_AnimatorJumpEnd);
+            m_IsJumping = false;
         }
     }
-    private void Jump()
+    public void Jump()
     {
-        if (m_MustJump)
-        {
-            float force = m_JumpForce.Value > m_JumpForce.MinValue ? m_JumpForce.Value : m_JumpForce.MinValue;
-            m_RB.AddForce(Vector3.up * force , ForceMode.Impulse);
-            m_MustJump = false;
-        }
+        float force = m_JumpForce.Value > m_JumpForce.MinValue ? m_JumpForce.Value : m_JumpForce.MinValue;
+        m_RB.AddForce(Vector3.up * force, ForceMode.Impulse);
+        m_IsJumping = true;
     }
 
     public void KillPlayer()
     {
-        //Death animation
+        m_Animator.SetTrigger(m_AnimatorDeath);
         m_Active = false;
+    }
 
-        m_DeathEvent.Raise();   //Move to end of death animation
+    public void OnDeath()
+    {
+        m_DeathEvent.Raise();
     }
 
     public void OnVictory()
