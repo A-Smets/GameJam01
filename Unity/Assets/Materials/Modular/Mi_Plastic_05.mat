@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_Plastic_04
+  m_Name: Mi_Plastic_05
   m_Shader: {fileID: -6465566751694194690, guid: cef173dd4ca96ec44b525ead77f17b3b,
     type: 3}
   m_ShaderKeywords: 
@@ -102,7 +102,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_20104dcad5ba4734aa20c1e415e6d4e5: 2.5
+    - Vector1_20104dcad5ba4734aa20c1e415e6d4e5: 1.4
     - Vector1_528d491cbca14074ad46fd693633b7e4: 1
     - Vector1_5534ea490eb842079f7e126fd406bc52: 0
     - Vector1_ce667c27cb3a4efa965cb894207f0640: 0
@@ -133,7 +133,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_8c1af615b3a34d5a99bd021f757b9c1c: {r: 0.95, g: 0.4684237, b: 0.17480001,
+    - Color_8c1af615b3a34d5a99bd021f757b9c1c: {r: 0.553, g: 0.3011099, b: 0.18529843,
         a: 0}
     - Color_8cbb1d0141cb4e90a95ac37b2e2b61a4: {r: 0.83, g: 0.40006, b: 0.41576818,
         a: 0}
