@@ -10,6 +10,8 @@ public abstract class Trap : MonoBehaviour
     [SerializeField, TitleGroup("Base Trap Data")] private Collider m_TriggerCollider;
     [SerializeField, TitleGroup("Base Trap Data")] private E_LayerCompare m_PlayerLayer = E_LayerCompare.Player;
     [SerializeField, TitleGroup("Base Trap Data"), Range(0,1)] private float m_ActivationChance = 1;
+    [SerializeField, TitleGroup("Base Trap Data"), Space(5)] private SoundEvent m_ActivationSound;
+    [SerializeField, TitleGroup("Base Trap Data")] private AudioSource m_AudioSource;
 
     private void Awake()
     {
@@ -25,6 +27,7 @@ public abstract class Trap : MonoBehaviour
 
     private void Activate(GameObject playerObj)
     {
+        if (m_ActivationSound) m_ActivationSound.Play(m_AudioSource);
         m_WasSprung.Value = true;
         m_TriggerCollider.enabled = false;
         SpringTrap(playerObj);
