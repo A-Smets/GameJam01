@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ed9acf0da71247a4fbdcda5deacb32e6
+guid: 99e9ec1938eceb448a360e319dbb4de5
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
@@ -38,8 +38,8 @@ ModelImporter:
       name: Valve_boom
       takeName: Take 001
       internalID: 0
-      firstFrame: 35
-      lastFrame: 46
+      firstFrame: 45
+      lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -62,7 +62,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 35
     isReadable: 0
   meshes:
     lODScreenPercentages: []
