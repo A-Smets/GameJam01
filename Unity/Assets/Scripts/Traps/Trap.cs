@@ -11,28 +11,28 @@ public abstract class Trap : MonoBehaviour
 
     private void Awake()
     {
-        if (m_WasSprung.Value) Activate();
+        if (m_WasSprung.Value) PostActivate();
     }
     private void OnTriggerEnter(Collider other)
     {
         if(Utilities.CheckCollision(other.gameObject, (int)m_PlayerLayer))
         {
-            Activate();
-            /*
-            if(other.TryGetComponent(out Player player))
-            {
-                player.KillPlayer();
-            }
-            */
+            Activate(other.gameObject);
         }
     }
 
-    private void Activate()
+    private void Activate(GameObject playerObj)
     {
         m_WasSprung.Value = true;
         m_TriggerCollider.enabled = false;
-        SpringTrap();
+        SpringTrap(playerObj);
+    }
+    private void PostActivate()
+    {
+        m_TriggerCollider.enabled = false;
+        SetToPostActivation();
     }
 
-    protected abstract void SpringTrap();
+    protected abstract void SpringTrap(GameObject playerObj);
+    protected abstract void SetToPostActivation();
 }
