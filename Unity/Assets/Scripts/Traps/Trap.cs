@@ -8,6 +8,7 @@ public abstract class Trap : MonoBehaviour
     [SerializeField, TitleGroup("Base Trap Data"), InfoBox("Unique BoolSO must be created for each trap", InfoMessageType = InfoMessageType.Warning)] private BoolSO m_WasSprung;
     [SerializeField, TitleGroup("Base Trap Data")] private Collider m_TriggerCollider;
     [SerializeField, TitleGroup("Base Trap Data")] private E_LayerCompare m_PlayerLayer = E_LayerCompare.Player;
+    [SerializeField, TitleGroup("Base Trap Data"), Range(0,1)] private float m_ActivationChance = 1;
 
     private void Awake()
     {
@@ -17,7 +18,7 @@ public abstract class Trap : MonoBehaviour
     {
         if(Utilities.CheckCollision(other.gameObject, (int)m_PlayerLayer))
         {
-            Activate(other.gameObject);
+            if(Random.value <= m_ActivationChance) Activate(other.gameObject);
         }
     }
 
@@ -31,6 +32,7 @@ public abstract class Trap : MonoBehaviour
     private void PostActivate()
     {
         m_TriggerCollider.enabled = false;
+        SetPostActivate();
     }
 
     protected abstract void SpringTrap(GameObject playerObj);
