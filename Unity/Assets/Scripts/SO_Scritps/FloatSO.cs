@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/FloatSO")]
-public class FloatSO : GameEvent
+public class FloatSO : ScriptableObject
 {
     [SerializeField, HorizontalGroup("Bools")] protected bool constantValue = false;
     [SerializeField, HorizontalGroup("Bools", Width = .55f), ShowIf("@!constantValue"), EnumPaging, LabelWidth(75)] protected E_ClampingMethod clamping;
@@ -51,18 +51,6 @@ public class FloatSO : GameEvent
                 default:
                     break;
             }
-
-#if UNITY_EDITOR
-            if (!constantValue && UnityEditor.EditorApplication.isPlaying)
-            {
-                Raise();
-            }
-#else
-                if (!constantValue && Application.isPlaying)
-                {
-                    Raise();
-                }
-#endif
         }
     }
 
@@ -129,8 +117,7 @@ public class FloatSO : GameEvent
         }
     }
 
-    [Button, PropertySpace(5)]
-    protected void ResetAsset()
+    [Button, PropertySpace(5)] protected void ResetAsset()
     {
         constantValue = false;
         clamping = E_ClampingMethod.None;
