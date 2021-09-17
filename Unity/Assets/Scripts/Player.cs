@@ -5,9 +5,10 @@ using Sirenix.OdinInspector;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private Animator m_Animator;
+    [SerializeField] private Rigidbody m_RB;
     [SerializeField] private PlayerInputs m_Inputs;
     [SerializeField] private GameEvent m_DeathEvent;
-    [SerializeField] private Rigidbody m_RB;
     [SerializeField] private FloatSO m_MoveSpeed;
     [SerializeField] private FloatSO m_RotationSpeed;
     [SerializeField] private FloatSO m_JumpForce;
