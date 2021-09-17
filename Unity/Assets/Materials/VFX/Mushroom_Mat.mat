@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _BaseColor:
+        m_Texture: {fileID: 2800000, guid: 094ce12b844779641b442c6df7e4e988, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -51,6 +55,14 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 1e434679dc46ac547aca05c58e013d70, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ORM:
+        m_Texture: {fileID: 2800000, guid: 85f0d210ac70b7c43a3b9750de785adc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -66,7 +78,7 @@ Material:
     - _SpotsMask:
         m_Texture: {fileID: 2800000, guid: 6668b5c54ac2a9f4ebceea6d968cf7d2, type: 3}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0.75, y: 0}
+        m_Offset: {x: 0.1, y: 0.1}
     - _texcoord:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -92,6 +104,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DesaturationFactor: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -123,7 +136,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EndColor: {r: 0.5, g: 0.46666658, b: 0.29999998, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _SpotsColor: {r: 0.1333333, g: 0.19999996, b: 0, a: 1}
+    - _SpotsColor: {r: 0.13333324, g: 0.1999999, b: 0, a: 1}
     - _StartColor: {r: 0.8, g: 0.74666667, b: 0.48000002, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3298846792480864970
