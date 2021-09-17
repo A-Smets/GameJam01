@@ -18,11 +18,12 @@ public abstract class Trap : MonoBehaviour
         if(Utilities.CheckCollision(other.gameObject, (int)m_PlayerLayer))
         {
             Activate();
+            /*
             if(other.TryGetComponent(out Player player))
             {
                 player.KillPlayer();
             }
-
+            */
         }
     }
 
