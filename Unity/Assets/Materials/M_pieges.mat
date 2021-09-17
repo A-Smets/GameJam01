@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_pieges
-  m_Shader: {fileID: -6465566751694194690, guid: 1ed0bee66ee0885468f8ac6f7b527d0e,
-    type: 3}
+  m_Shader: {fileID: 4800000, guid: c72987087176f2b498c4b8b25d066119, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -89,6 +88,34 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _piege_low_pieges_BaseColor:
+        m_Texture: {fileID: 2800000, guid: 094ce12b844779641b442c6df7e4e988, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _piege_low_pieges_BaseColor1:
+        m_Texture: {fileID: 2800000, guid: 094ce12b844779641b442c6df7e4e988, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _piege_low_pieges_Normal:
+        m_Texture: {fileID: 2800000, guid: 1e434679dc46ac547aca05c58e013d70, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _piege_low_pieges_Normal1:
+        m_Texture: {fileID: 2800000, guid: 1e434679dc46ac547aca05c58e013d70, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _piege_low_pieges_OcclusionRoughnessMetallic:
+        m_Texture: {fileID: 2800000, guid: 85f0d210ac70b7c43a3b9750de785adc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _piege_low_pieges_OcclusionRoughnessMetallic1:
+        m_Texture: {fileID: 2800000, guid: 85f0d210ac70b7c43a3b9750de785adc, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -103,6 +130,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _AlphaClip: 0
+    - _AlphaCutoff: 0.5
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -128,6 +156,7 @@ Material:
     - _Surface: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - __dirty: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}

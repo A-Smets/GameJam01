@@ -39,6 +39,13 @@ public enum E_TagCompare
     TrapProper
 }
 
+public enum E_CollisionType
+{
+    Trigger,
+    Collision,
+    Particles
+}
+
 [System.Serializable] public struct GameEventResponse
 {
     public GameEvent gameEvent;

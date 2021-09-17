@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 03b83c8f81008904f94e8ecb97a970d5
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _GJ_Rat_low_Rat_Assets_BaseColor: {fileID: 2800000, guid: 11948de30ce8e5d4abf166c9d84ace2e,
+      type: 3}
+  - _GJ_Rat_low_Rat_Assets_Normal: {fileID: 2800000, guid: 13b77a8cfc0be1945bbf2887576109ab,
+      type: 3}
+  - _GJ_Rat_low_Rat_Assets_OcclusionRoughnessMetallic: {fileID: 2800000, guid: a8b29d4c690e7ef4681fc5a4b8c412ec,
+      type: 3}
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
