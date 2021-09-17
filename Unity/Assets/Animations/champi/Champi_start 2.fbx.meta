@@ -38,7 +38,7 @@ ModelImporter:
       name: end_shroom
       takeName: Take 001
       internalID: 0
-      firstFrame: 59
+      firstFrame: 59.9
       lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
