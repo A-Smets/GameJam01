@@ -6,7 +6,8 @@ Shader "Custom/VFX/Particles/Single Channel Unlit"
 	{
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
-		[ASEBegin]_TextureMaskG("Texture Mask (G)", 2D) = "white" {}
+		[ASEBegin][KeywordEnum(Red,Green,Blue,Alpha)] _Channel("Channel", Float) = 0
+		_TextureMaskG("Texture Mask (G)", 2D) = "white" {}
 		_ColorIntensity("Color Intensity", Range( 0 , 10)) = 1
 		[ASEEnd]_DepthFadeDistance1("DepthFade Distance", Range( 0 , 3)) = 0
 
@@ -167,6 +168,7 @@ Shader "Custom/VFX/Particles/Single Channel Unlit"
 
 			#define ASE_NEEDS_FRAG_COLOR
 			#define ASE_NEEDS_VERT_POSITION
+			#pragma shader_feature_local _CHANNEL_RED _CHANNEL_GREEN _CHANNEL_BLUE _CHANNEL_ALPHA
 
 
 			struct VertexInput
@@ -365,6 +367,17 @@ Shader "Custom/VFX/Particles/Single Channel Unlit"
 				#endif
 				float2 texCoord7 = IN.ase_texcoord3.xy * float2( 1,1 ) + float2( 0,0 );
 				float4 tex2DNode9 = tex2D( _TextureMaskG, texCoord7 );
+				#if defined(_CHANNEL_RED)
+				float staticSwitch18 = tex2DNode9.r;
+				#elif defined(_CHANNEL_GREEN)
+				float staticSwitch18 = tex2DNode9.g;
+				#elif defined(_CHANNEL_BLUE)
+				float staticSwitch18 = tex2DNode9.b;
+				#elif defined(_CHANNEL_ALPHA)
+				float staticSwitch18 = tex2DNode9.a;
+				#else
+				float staticSwitch18 = tex2DNode9.r;
+				#endif
 				
 				float4 screenPos8 = IN.ase_texcoord4;
 				float4 ase_screenPosNorm8 = screenPos8 / screenPos8.w;
@@ -374,8 +387,8 @@ Shader "Custom/VFX/Particles/Single Channel Unlit"
 				
 				float3 BakedAlbedo = 0;
 				float3 BakedEmission = 0;
-				float3 Color = ( _ColorIntensity * tex2DNode9.g * IN.ase_color ).rgb;
-				float Alpha = ( tex2DNode9.g * IN.ase_color.a * saturate( distanceDepth8 ) );
+				float3 Color = ( _ColorIntensity * staticSwitch18 * IN.ase_color ).rgb;
+				float Alpha = ( staticSwitch18 * IN.ase_color.a * saturate( distanceDepth8 ) );
 				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
 
@@ -425,6 +438,7 @@ Shader "Custom/VFX/Particles/Single Channel Unlit"
 			#include "Packages/com.unity.render-pipelines.core/ShaderLibrary/Color.hlsl"
 
 			#define ASE_NEEDS_VERT_POSITION
+			#pragma shader_feature_local _CHANNEL_RED _CHANNEL_GREEN _CHANNEL_BLUE _CHANNEL_ALPHA
 
 
 			struct VertexInput
@@ -619,13 +633,24 @@ Shader "Custom/VFX/Particles/Single Channel Unlit"
 
 				float2 texCoord7 = IN.ase_texcoord2.xy * float2( 1,1 ) + float2( 0,0 );
 				float4 tex2DNode9 = tex2D( _TextureMaskG, texCoord7 );
+				#if defined(_CHANNEL_RED)
+				float staticSwitch18 = tex2DNode9.r;
+				#elif defined(_CHANNEL_GREEN)
+				float staticSwitch18 = tex2DNode9.g;
+				#elif defined(_CHANNEL_BLUE)
+				float staticSwitch18 = tex2DNode9.b;
+				#elif defined(_CHANNEL_ALPHA)
+				float staticSwitch18 = tex2DNode9.a;
+				#else
+				float staticSwitch18 = tex2DNode9.r;
+				#endif
 				float4 screenPos8 = IN.ase_texcoord3;
 				float4 ase_screenPosNorm8 = screenPos8 / screenPos8.w;
 				ase_screenPosNorm8.z = ( UNITY_NEAR_CLIP_VALUE >= 0 ) ? ase_screenPosNorm8.z : ase_screenPosNorm8.z * 0.5 + 0.5;
 				float screenDepth8 = LinearEyeDepth(SHADERGRAPH_SAMPLE_SCENE_DEPTH( ase_screenPosNorm8.xy ),_ZBufferParams);
 				float distanceDepth8 = abs( ( screenDepth8 - LinearEyeDepth( ase_screenPosNorm8.z,_ZBufferParams ) ) / ( _DepthFadeDistance1 ) );
 				
-				float Alpha = ( tex2DNode9.g * IN.ase_color.a * saturate( distanceDepth8 ) );
+				float Alpha = ( staticSwitch18 * IN.ase_color.a * saturate( distanceDepth8 ) );
 				float AlphaClipThreshold = 0.5;
 
 				#ifdef _ALPHATEST_ON
@@ -648,16 +673,17 @@ Shader "Custom/VFX/Particles/Single Channel Unlit"
 }
 /*ASEBEGIN
 Version=18800
-230;129;1060;781;1540.182;505.587;1.578224;True;False
+81;119;1067;757;1572.535;470.8661;1.578224;True;False
 Node;AmplifyShaderEditor.PosVertexDataNode;5;-1079.843,156.5217;Inherit;False;0;0;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;6;-1179.555,313.9688;Inherit;False;Property;_DepthFadeDistance1;DepthFade Distance;2;0;Create;True;0;0;0;False;0;False;0;0;0;3;0;1;FLOAT;0
-Node;AmplifyShaderEditor.TextureCoordinatesNode;7;-957.4838,-129.2446;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;6;-1179.555,313.9688;Inherit;False;Property;_DepthFadeDistance1;DepthFade Distance;3;0;Create;True;0;0;0;False;0;False;0;0;0;3;0;1;FLOAT;0
+Node;AmplifyShaderEditor.TextureCoordinatesNode;7;-1186.326,-96.10189;Inherit;False;0;-1;2;3;2;SAMPLER2D;;False;0;FLOAT2;1,1;False;1;FLOAT2;0,0;False;5;FLOAT2;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.DepthFade;8;-834.514,226.217;Inherit;False;True;False;True;2;1;FLOAT3;0,0,0;False;0;FLOAT;1;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SamplerNode;9;-946.746,-125.6115;Inherit;True;Property;_TextureMaskG;Texture Mask (G);1;0;Create;True;0;0;0;False;0;False;-1;None;de5ba61e85618fe47bcc06dae4e8504c;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.VertexColorNode;11;-588.2921,41.80076;Inherit;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SaturateNode;13;-564.5162,220.4907;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SamplerNode;9;-717.9034,-158.7542;Inherit;True;Property;_TextureMaskG;Texture Mask (G);0;0;Create;True;0;0;0;False;0;False;-1;None;None;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.StaticSwitch;18;-605.0844,-128.3914;Inherit;False;Property;_Channel;Channel;0;0;Create;True;0;0;0;True;0;False;0;0;0;True;;KeywordEnum;4;Red;Green;Blue;Alpha;Create;True;True;9;1;FLOAT;0;False;0;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;4;FLOAT;0;False;5;FLOAT;0;False;6;FLOAT;0;False;7;FLOAT;0;False;8;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;14;-331.6857,-43.65104;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;COLOR;0,0,0,0;False;1;COLOR;0
-Node;AmplifyShaderEditor.RangedFloatNode;12;-700.0518,-256.4675;Inherit;False;Property;_ColorIntensity;Color Intensity;1;0;Create;True;0;0;0;False;0;False;1;0;0;10;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;12;-700.0518,-256.4675;Inherit;False;Property;_ColorIntensity;Color Intensity;2;0;Create;True;0;0;0;False;0;False;1;1;0;10;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;15;-325.335,97.25773;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;True;0;False;-1;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;0;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;0,0;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;3;Custom/VFX/Particles/Single Channel Unlit;2992e84f91cbeb14eab234972e07ea9d;True;Forward;0;1;Forward;8;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Transparent=RenderType;Queue=Transparent=Queue=0;True;0;0;True;1;5;False;-1;10;False;-1;1;1;False;-1;10;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;2;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalForward;False;0;Hidden/InternalErrorShader;0;0;Standard;22;Surface;1;  Blend;0;Two Sided;1;Cast Shadows;0;  Use Shadow Threshold;0;Receive Shadows;1;GPU Instancing;1;LOD CrossFade;0;Built-in Fog;0;DOTS Instancing;0;Meta Pass;0;Extra Pre Pass;0;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;5;False;True;False;True;False;False;;False;0
@@ -666,15 +692,19 @@ Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;2992e84f91cbeb14eab234972e07ea9d;True;Meta;0;4;Meta;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 WireConnection;8;1;5;0
 WireConnection;8;0;6;0
-WireConnection;13;0;8;0
 WireConnection;9;1;7;0
+WireConnection;13;0;8;0
+WireConnection;18;1;9;1
+WireConnection;18;0;9;2
+WireConnection;18;2;9;3
+WireConnection;18;3;9;4
 WireConnection;14;0;12;0
-WireConnection;14;1;9;2
+WireConnection;14;1;18;0
 WireConnection;14;2;11;0
-WireConnection;15;0;9;2
+WireConnection;15;0;18;0
 WireConnection;15;1;11;4
 WireConnection;15;2;13;0
 WireConnection;1;2;14;0
 WireConnection;1;3;15;0
 ASEEND*/
-//CHKSM=0EC3307B9658D9AE33BA9FEBB0246F6E7967289A
+//CHKSM=06E3F662DBF4521D2B2AE302259E3E7C7ACC1101

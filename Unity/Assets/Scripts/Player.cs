@@ -12,9 +12,9 @@ public class Player : MonoBehaviour
     [SerializeField] private FloatSO m_RotationSpeed;
     [SerializeField] private FloatSO m_JumpForce;
     private bool m_MustJump;
-    private bool m_Active = true;
+    [ReadOnly, HorizontalGroup("Status Bools")] public bool m_Active = true;
     private const float JUMP_MIN_VELOCITY = .05f;
-    [ShowInInspector, ReadOnly] private bool CanJump
+    [ShowInInspector, ReadOnly, HorizontalGroup("Status Bools", Width = .001f)] private bool CanJump
     {
         get { return m_RB ? !m_MustJump && Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY : false; }
     }
@@ -84,8 +84,8 @@ public class Player : MonoBehaviour
 
     public void KillPlayer()
     {
-        //Death animation
         m_Active = false;
+        //Death animation
 
         m_DeathEvent.Raise();   //Move to end of death animation
     }

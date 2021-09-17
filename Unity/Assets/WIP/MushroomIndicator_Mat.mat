@@ -21,8 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MushroomIndicator_Mat
-  m_Shader: {fileID: 4800000, guid: 227191b130027534d828261500862582, type: 3}
-  m_ShaderKeywords: _RECEIVE_SHADOWS_OFF
+  m_Shader: {fileID: 4800000, guid: a1dd36b0ef465844cba36cc658223a24, type: 3}
+  m_ShaderKeywords: _CHANNEL_RED _RECEIVE_SHADOWS_OFF
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
@@ -106,6 +106,7 @@ Material:
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
     - _CameraNearFadeDistance: 1
+    - _Channel: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _ColorIntensity: 3.5

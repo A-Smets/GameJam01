@@ -4,6 +4,8 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+#region Enums
 /// <summary>
 /// Used to clamp the Value of a FloatSO
 /// </summary>
@@ -39,7 +41,17 @@ public enum E_TagCompare
     TrapProper
 }
 
-[System.Serializable] public struct GameEventResponse
+public enum E_CollisionType
+{
+    Trigger,
+    Collision,
+    Particles
+}
+#endregion
+
+#region Structs
+[System.Serializable]
+public struct GameEventResponse
 {
     public GameEvent gameEvent;
     public UnityEvent response;
@@ -53,4 +65,5 @@ public enum E_TagCompare
     {
         gameEvent.Unregister(response);
     }
-}
+} 
+#endregion
