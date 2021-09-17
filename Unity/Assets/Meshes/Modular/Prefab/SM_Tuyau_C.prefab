@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8175709046280964882}
   - component: {fileID: 5105445469615113399}
   - component: {fileID: 7007276472035029117}
-  m_Layer: 0
+  - component: {fileID: -8602470402170662516}
+  m_Layer: 9
   m_Name: SM_Tuyau_C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,3 +82,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-8602470402170662516
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8808518203819299240}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -263026421901889283, guid: 10807f8593ff882408dc1289c6db6f74, type: 3}

@@ -9,8 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a37cc80d7ed7624cae7d338cf46f718, type: 3}
-  m_Name: 0_TrapList
+  m_Script: {fileID: 11500000, guid: 6f0539f941e735544b6c0881623d6f32, type: 3}
+  m_Name: Valve_1_BoolSO
   m_EditorClassIdentifier: 
-  m_TrapStates:
-  - {fileID: 11400000, guid: 72af9caa0b9cf8a43b795a6aed69eb78, type: 2}
