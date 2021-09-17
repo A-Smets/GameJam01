@@ -6,10 +6,10 @@ Shader "shd_assets_a_amplify"
 	{
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
-		[ASEBegin]_assets_a_OcclusionRoughnessMetallic("assets_a_OcclusionRoughnessMetallic", 2D) = "white" {}
-		_assets_a_Normal("assets_a_Normal", 2D) = "bump" {}
-		_assets_a_Emissive("assets_a_Emissive", 2D) = "white" {}
-		[ASEEnd]_assets_a_BaseColor("assets_a_BaseColor", 2D) = "white" {}
+		[ASEBegin]_assets_a_low_assets_a_BaseColor("assets_a_low_assets_a_BaseColor", 2D) = "white" {}
+		_assets_a_low_assets_a_Emissive("assets_a_low_assets_a_Emissive", 2D) = "white" {}
+		_assets_a_low_assets_a_Normal("assets_a_low_assets_a_Normal", 2D) = "bump" {}
+		[ASEEnd]_assets_a_low_assets_a_OcclusionRoughnessMetallic("assets_a_low_assets_a_OcclusionRoughnessMetallic", 2D) = "white" {}
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
 		//_TransmissionShadow( "Transmission Shadow", Range( 0, 1 ) ) = 0.5
@@ -155,7 +155,6 @@ Shader "shd_assets_a_amplify"
 
 			HLSLPROGRAM
 			#define _NORMAL_DROPOFF_TS 1
-			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
@@ -229,10 +228,10 @@ Shader "shd_assets_a_amplify"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _assets_a_BaseColor_ST;
-			float4 _assets_a_Normal_ST;
-			float4 _assets_a_Emissive_ST;
-			float4 _assets_a_OcclusionRoughnessMetallic_ST;
+			float4 _assets_a_low_assets_a_BaseColor_ST;
+			float4 _assets_a_low_assets_a_Normal_ST;
+			float4 _assets_a_low_assets_a_Emissive_ST;
+			float4 _assets_a_low_assets_a_OcclusionRoughnessMetallic_ST;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -253,10 +252,10 @@ Shader "shd_assets_a_amplify"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _assets_a_BaseColor;
-			sampler2D _assets_a_Normal;
-			sampler2D _assets_a_Emissive;
-			sampler2D _assets_a_OcclusionRoughnessMetallic;
+			sampler2D _assets_a_low_assets_a_BaseColor;
+			sampler2D _assets_a_low_assets_a_Normal;
+			sampler2D _assets_a_low_assets_a_Emissive;
+			sampler2D _assets_a_low_assets_a_OcclusionRoughnessMetallic;
 
 
 			
@@ -446,22 +445,22 @@ Shader "shd_assets_a_amplify"
 	
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float2 uv_assets_a_BaseColor = IN.ase_texcoord7.xy * _assets_a_BaseColor_ST.xy + _assets_a_BaseColor_ST.zw;
+				float2 uv_assets_a_low_assets_a_BaseColor = IN.ase_texcoord7.xy * _assets_a_low_assets_a_BaseColor_ST.xy + _assets_a_low_assets_a_BaseColor_ST.zw;
 				
-				float2 uv_assets_a_Normal = IN.ase_texcoord7.xy * _assets_a_Normal_ST.xy + _assets_a_Normal_ST.zw;
+				float2 uv_assets_a_low_assets_a_Normal = IN.ase_texcoord7.xy * _assets_a_low_assets_a_Normal_ST.xy + _assets_a_low_assets_a_Normal_ST.zw;
 				
-				float2 uv_assets_a_Emissive = IN.ase_texcoord7.xy * _assets_a_Emissive_ST.xy + _assets_a_Emissive_ST.zw;
+				float2 uv_assets_a_low_assets_a_Emissive = IN.ase_texcoord7.xy * _assets_a_low_assets_a_Emissive_ST.xy + _assets_a_low_assets_a_Emissive_ST.zw;
 				
-				float2 uv_assets_a_OcclusionRoughnessMetallic = IN.ase_texcoord7.xy * _assets_a_OcclusionRoughnessMetallic_ST.xy + _assets_a_OcclusionRoughnessMetallic_ST.zw;
-				float4 tex2DNode1 = tex2D( _assets_a_OcclusionRoughnessMetallic, uv_assets_a_OcclusionRoughnessMetallic );
+				float2 uv_assets_a_low_assets_a_OcclusionRoughnessMetallic = IN.ase_texcoord7.xy * _assets_a_low_assets_a_OcclusionRoughnessMetallic_ST.xy + _assets_a_low_assets_a_OcclusionRoughnessMetallic_ST.zw;
+				float4 tex2DNode17 = tex2D( _assets_a_low_assets_a_OcclusionRoughnessMetallic, uv_assets_a_low_assets_a_OcclusionRoughnessMetallic );
 				
-				float3 Albedo = tex2D( _assets_a_BaseColor, uv_assets_a_BaseColor ).rgb;
-				float3 Normal = UnpackNormalScale( tex2D( _assets_a_Normal, uv_assets_a_Normal ), 1.0f );
-				float3 Emission = tex2D( _assets_a_Emissive, uv_assets_a_Emissive ).rgb;
+				float3 Albedo = tex2D( _assets_a_low_assets_a_BaseColor, uv_assets_a_low_assets_a_BaseColor ).rgb;
+				float3 Normal = UnpackNormalScale( tex2D( _assets_a_low_assets_a_Normal, uv_assets_a_low_assets_a_Normal ), 1.0f );
+				float3 Emission = tex2D( _assets_a_low_assets_a_Emissive, uv_assets_a_low_assets_a_Emissive ).rgb;
 				float3 Specular = 0.5;
-				float Metallic = tex2DNode1.b;
-				float Smoothness = ( 1.0 - tex2DNode1.g );
-				float Occlusion = 1;
+				float Metallic = tex2DNode17.b;
+				float Smoothness = ( 1.0 - tex2DNode17.g );
+				float Occlusion = tex2DNode17.r;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
@@ -622,7 +621,6 @@ Shader "shd_assets_a_amplify"
 
 			HLSLPROGRAM
 			#define _NORMAL_DROPOFF_TS 1
-			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
@@ -668,10 +666,10 @@ Shader "shd_assets_a_amplify"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _assets_a_BaseColor_ST;
-			float4 _assets_a_Normal_ST;
-			float4 _assets_a_Emissive_ST;
-			float4 _assets_a_OcclusionRoughnessMetallic_ST;
+			float4 _assets_a_low_assets_a_BaseColor_ST;
+			float4 _assets_a_low_assets_a_Normal_ST;
+			float4 _assets_a_low_assets_a_Emissive_ST;
+			float4 _assets_a_low_assets_a_OcclusionRoughnessMetallic_ST;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -874,7 +872,6 @@ Shader "shd_assets_a_amplify"
 
 			HLSLPROGRAM
 			#define _NORMAL_DROPOFF_TS 1
-			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
@@ -920,10 +917,10 @@ Shader "shd_assets_a_amplify"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _assets_a_BaseColor_ST;
-			float4 _assets_a_Normal_ST;
-			float4 _assets_a_Emissive_ST;
-			float4 _assets_a_OcclusionRoughnessMetallic_ST;
+			float4 _assets_a_low_assets_a_BaseColor_ST;
+			float4 _assets_a_low_assets_a_Normal_ST;
+			float4 _assets_a_low_assets_a_Emissive_ST;
+			float4 _assets_a_low_assets_a_OcclusionRoughnessMetallic_ST;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -1109,7 +1106,6 @@ Shader "shd_assets_a_amplify"
 
 			HLSLPROGRAM
 			#define _NORMAL_DROPOFF_TS 1
-			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
@@ -1159,10 +1155,10 @@ Shader "shd_assets_a_amplify"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _assets_a_BaseColor_ST;
-			float4 _assets_a_Normal_ST;
-			float4 _assets_a_Emissive_ST;
-			float4 _assets_a_OcclusionRoughnessMetallic_ST;
+			float4 _assets_a_low_assets_a_BaseColor_ST;
+			float4 _assets_a_low_assets_a_Normal_ST;
+			float4 _assets_a_low_assets_a_Emissive_ST;
+			float4 _assets_a_low_assets_a_OcclusionRoughnessMetallic_ST;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -1183,8 +1179,8 @@ Shader "shd_assets_a_amplify"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _assets_a_BaseColor;
-			sampler2D _assets_a_Emissive;
+			sampler2D _assets_a_low_assets_a_BaseColor;
+			sampler2D _assets_a_low_assets_a_Emissive;
 
 
 			
@@ -1333,13 +1329,13 @@ Shader "shd_assets_a_amplify"
 					#endif
 				#endif
 
-				float2 uv_assets_a_BaseColor = IN.ase_texcoord2.xy * _assets_a_BaseColor_ST.xy + _assets_a_BaseColor_ST.zw;
+				float2 uv_assets_a_low_assets_a_BaseColor = IN.ase_texcoord2.xy * _assets_a_low_assets_a_BaseColor_ST.xy + _assets_a_low_assets_a_BaseColor_ST.zw;
 				
-				float2 uv_assets_a_Emissive = IN.ase_texcoord2.xy * _assets_a_Emissive_ST.xy + _assets_a_Emissive_ST.zw;
+				float2 uv_assets_a_low_assets_a_Emissive = IN.ase_texcoord2.xy * _assets_a_low_assets_a_Emissive_ST.xy + _assets_a_low_assets_a_Emissive_ST.zw;
 				
 				
-				float3 Albedo = tex2D( _assets_a_BaseColor, uv_assets_a_BaseColor ).rgb;
-				float3 Emission = tex2D( _assets_a_Emissive, uv_assets_a_Emissive ).rgb;
+				float3 Albedo = tex2D( _assets_a_low_assets_a_BaseColor, uv_assets_a_low_assets_a_BaseColor ).rgb;
+				float3 Emission = tex2D( _assets_a_low_assets_a_Emissive, uv_assets_a_low_assets_a_Emissive ).rgb;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
 
@@ -1371,7 +1367,6 @@ Shader "shd_assets_a_amplify"
 
 			HLSLPROGRAM
 			#define _NORMAL_DROPOFF_TS 1
-			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
@@ -1421,10 +1416,10 @@ Shader "shd_assets_a_amplify"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _assets_a_BaseColor_ST;
-			float4 _assets_a_Normal_ST;
-			float4 _assets_a_Emissive_ST;
-			float4 _assets_a_OcclusionRoughnessMetallic_ST;
+			float4 _assets_a_low_assets_a_BaseColor_ST;
+			float4 _assets_a_low_assets_a_Normal_ST;
+			float4 _assets_a_low_assets_a_Emissive_ST;
+			float4 _assets_a_low_assets_a_OcclusionRoughnessMetallic_ST;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -1445,7 +1440,7 @@ Shader "shd_assets_a_amplify"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _assets_a_BaseColor;
+			sampler2D _assets_a_low_assets_a_BaseColor;
 
 
 			
@@ -1591,10 +1586,10 @@ Shader "shd_assets_a_amplify"
 					#endif
 				#endif
 
-				float2 uv_assets_a_BaseColor = IN.ase_texcoord2.xy * _assets_a_BaseColor_ST.xy + _assets_a_BaseColor_ST.zw;
+				float2 uv_assets_a_low_assets_a_BaseColor = IN.ase_texcoord2.xy * _assets_a_low_assets_a_BaseColor_ST.xy + _assets_a_low_assets_a_BaseColor_ST.zw;
 				
 				
-				float3 Albedo = tex2D( _assets_a_BaseColor, uv_assets_a_BaseColor ).rgb;
+				float3 Albedo = tex2D( _assets_a_low_assets_a_BaseColor, uv_assets_a_low_assets_a_BaseColor ).rgb;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
 
@@ -1623,7 +1618,6 @@ Shader "shd_assets_a_amplify"
 
 			HLSLPROGRAM
 			#define _NORMAL_DROPOFF_TS 1
-			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
@@ -1670,10 +1664,10 @@ Shader "shd_assets_a_amplify"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _assets_a_BaseColor_ST;
-			float4 _assets_a_Normal_ST;
-			float4 _assets_a_Emissive_ST;
-			float4 _assets_a_OcclusionRoughnessMetallic_ST;
+			float4 _assets_a_low_assets_a_BaseColor_ST;
+			float4 _assets_a_low_assets_a_Normal_ST;
+			float4 _assets_a_low_assets_a_Emissive_ST;
+			float4 _assets_a_low_assets_a_OcclusionRoughnessMetallic_ST;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -1868,7 +1862,6 @@ Shader "shd_assets_a_amplify"
 
 			HLSLPROGRAM
 			#define _NORMAL_DROPOFF_TS 1
-			#pragma multi_compile_instancing
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
@@ -1943,10 +1936,10 @@ Shader "shd_assets_a_amplify"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _assets_a_BaseColor_ST;
-			float4 _assets_a_Normal_ST;
-			float4 _assets_a_Emissive_ST;
-			float4 _assets_a_OcclusionRoughnessMetallic_ST;
+			float4 _assets_a_low_assets_a_BaseColor_ST;
+			float4 _assets_a_low_assets_a_Normal_ST;
+			float4 _assets_a_low_assets_a_Emissive_ST;
+			float4 _assets_a_low_assets_a_OcclusionRoughnessMetallic_ST;
 			#ifdef _TRANSMISSION_ASE
 				float _TransmissionShadow;
 			#endif
@@ -1967,8 +1960,8 @@ Shader "shd_assets_a_amplify"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
-			sampler2D _assets_a_BaseColor;
-			sampler2D _assets_a_Emissive;
+			sampler2D _assets_a_low_assets_a_BaseColor;
+			sampler2D _assets_a_low_assets_a_Emissive;
 
 
 			
@@ -2158,13 +2151,13 @@ Shader "shd_assets_a_amplify"
 	
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float2 uv_assets_a_BaseColor = IN.ase_texcoord7.xy * _assets_a_BaseColor_ST.xy + _assets_a_BaseColor_ST.zw;
+				float2 uv_assets_a_low_assets_a_BaseColor = IN.ase_texcoord7.xy * _assets_a_low_assets_a_BaseColor_ST.xy + _assets_a_low_assets_a_BaseColor_ST.zw;
 				
-				float2 uv_assets_a_Emissive = IN.ase_texcoord7.xy * _assets_a_Emissive_ST.xy + _assets_a_Emissive_ST.zw;
+				float2 uv_assets_a_low_assets_a_Emissive = IN.ase_texcoord7.xy * _assets_a_low_assets_a_Emissive_ST.xy + _assets_a_low_assets_a_Emissive_ST.zw;
 				
-				float3 Albedo = tex2D( _assets_a_BaseColor, uv_assets_a_BaseColor ).rgb;
+				float3 Albedo = tex2D( _assets_a_low_assets_a_BaseColor, uv_assets_a_low_assets_a_BaseColor ).rgb;
 				float3 Normal = float3(0, 0, 1);
-				float3 Emission = tex2D( _assets_a_Emissive, uv_assets_a_Emissive ).rgb;
+				float3 Emission = tex2D( _assets_a_low_assets_a_Emissive, uv_assets_a_low_assets_a_Emissive ).rgb;
 				float3 Specular = 0.5;
 				float Metallic = 0;
 				float Smoothness = 0.5;
@@ -2317,25 +2310,26 @@ Shader "shd_assets_a_amplify"
 }
 /*ASEBEGIN
 Version=18800
-582;120;1250;739;1669.558;484.7472;2.013202;True;True
-Node;AmplifyShaderEditor.SamplerNode;1;-676.4963,89.85001;Inherit;True;Property;_assets_a_OcclusionRoughnessMetallic;assets_a_OcclusionRoughnessMetallic;0;0;Create;True;0;0;0;False;0;False;-1;5bada02d160f65b4c9fc452a73020ef1;5bada02d160f65b4c9fc452a73020ef1;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.OneMinusNode;5;-250.2125,132.551;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.SamplerNode;4;-681.2455,-352.487;Inherit;True;Property;_assets_a_BaseColor;assets_a_BaseColor;3;0;Create;True;0;0;0;False;0;False;-1;4d409566126af13488ed46b2181e347f;4d409566126af13488ed46b2181e347f;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SamplerNode;2;-682.5316,-131.5759;Inherit;True;Property;_assets_a_Normal;assets_a_Normal;1;0;Create;True;0;0;0;False;0;False;-1;7eb0afa49ea6beb4e93e5379664882ba;7eb0afa49ea6beb4e93e5379664882ba;True;0;True;bump;Auto;True;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.SamplerNode;3;-666.5992,296.2463;Inherit;True;Property;_assets_a_Emissive;assets_a_Emissive;2;0;Create;True;0;0;0;False;0;False;-1;707c477a962eda140920595785bd3e80;707c477a962eda140920595785bd3e80;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+240;580;1250;699;765.5178;-82.93264;1;True;True
+Node;AmplifyShaderEditor.SamplerNode;14;-681.7844,-393.3672;Inherit;True;Property;_assets_a_low_assets_a_BaseColor;assets_a_low_assets_a_BaseColor;0;0;Create;True;0;0;0;False;0;False;-1;d764844f8ba891348a9ec1992079dd9b;d764844f8ba891348a9ec1992079dd9b;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;16;-669.0447,-112.1311;Inherit;True;Property;_assets_a_low_assets_a_Normal;assets_a_low_assets_a_Normal;2;0;Create;True;0;0;0;False;0;False;-1;4f839e65029416d47a3888ad8bda9bc5;4f839e65029416d47a3888ad8bda9bc5;True;0;True;bump;Auto;True;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;15;-681.1076,128.6984;Inherit;True;Property;_assets_a_low_assets_a_Emissive;assets_a_low_assets_a_Emissive;1;0;Create;True;0;0;0;False;0;False;-1;8e54875ecd872364482a1b548992587d;8e54875ecd872364482a1b548992587d;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;17;-686.419,389.0658;Inherit;True;Property;_assets_a_low_assets_a_OcclusionRoughnessMetallic;assets_a_low_assets_a_OcclusionRoughnessMetallic;3;0;Create;True;0;0;0;False;0;False;-1;2d1feb9482880a246a91f809b515eb6f;2d1feb9482880a246a91f809b515eb6f;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.OneMinusNode;5;-232.0977,436.3406;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;6;91.28046,-6.657204;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;True;0;False;-1;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;0;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;7;91.28046,-6.657204;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;2;shd_assets_a_amplify;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;17;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;1;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalForward;False;0;Hidden/InternalErrorShader;0;0;Standard;36;Workflow;1;Surface;0;  Refraction Model;0;  Blend;0;Two Sided;1;Fragment Normal Space,InvertActionOnDeselection;0;Transmission;0;  Transmission Shadow;0.5,False,-1;Translucency;0;  Translucency Strength;1,False,-1;  Normal Distortion;0.5,False,-1;  Scattering;2,False,-1;  Direct;0.9,False,-1;  Ambient;0.1,False,-1;  Shadow;0.5,False,-1;Cast Shadows;1;  Use Shadow Threshold;0;Receive Shadows;1;GPU Instancing;1;LOD CrossFade;1;Built-in Fog;1;_FinalColorxAlpha;0;Meta Pass;1;Override Baked GI;0;Extra Pre Pass;0;DOTS Instancing;0;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;8;False;True;True;True;True;True;True;True;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;7;91.28046,-6.657204;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;2;shd_assets_a_amplify;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;17;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;1;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalForward;False;0;Hidden/InternalErrorShader;0;0;Standard;36;Workflow;1;Surface;0;  Refraction Model;0;  Blend;0;Two Sided;1;Fragment Normal Space,InvertActionOnDeselection;0;Transmission;0;  Transmission Shadow;0.5,False,-1;Translucency;0;  Translucency Strength;1,False,-1;  Normal Distortion;0.5,False,-1;  Scattering;2,False,-1;  Direct;0.9,False,-1;  Ambient;0.1,False,-1;  Shadow;0.5,False,-1;Cast Shadows;1;  Use Shadow Threshold;0;Receive Shadows;1;GPU Instancing;0;LOD CrossFade;1;Built-in Fog;1;_FinalColorxAlpha;0;Meta Pass;1;Override Baked GI;0;Extra Pre Pass;0;DOTS Instancing;0;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;8;False;True;True;True;True;True;True;True;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;8;91.28046,-6.657204;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;True;0;False;-1;False;False;False;False;False;False;True;1;False;-1;True;3;False;-1;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;9;91.28046,-6.657204;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;True;0;False;-1;False;True;False;False;False;False;0;False;-1;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=DepthOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;10;91.28046,-6.657204;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Meta;0;4;Meta;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;11;91.28046,-6.657204;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Universal2D;0;5;Universal2D;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;1;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;False;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=Universal2D;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;12;91.28046,-6.657204;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthNormals;0;6;DepthNormals;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;-1;True;3;False;-1;False;True;1;LightMode=DepthNormals;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;13;91.28046,-6.657204;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;GBuffer;0;7;GBuffer;5;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;1;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalGBuffer;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-WireConnection;5;0;1;2
-WireConnection;7;0;4;0
-WireConnection;7;1;2;0
-WireConnection;7;2;3;0
-WireConnection;7;3;1;3
+WireConnection;5;0;17;2
+WireConnection;7;0;14;0
+WireConnection;7;1;16;0
+WireConnection;7;2;15;0
+WireConnection;7;3;17;3
 WireConnection;7;4;5;0
+WireConnection;7;5;17;1
 ASEEND*/
-//CHKSM=8324EE27AAB6CB9F4899442E17D760EE781768C4
+//CHKSM=D50B4588B09DA1CA2A238B99887A67E050EA096B

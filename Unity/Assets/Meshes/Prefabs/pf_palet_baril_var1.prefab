@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 125
   m_IsActive: 1
 --- !u!4 &6304171405310707989
 Transform:
@@ -101,6 +101,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_barrel_a (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b77f6dcb8a6615144a370789eb61f4b4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b77f6dcb8a6615144a370789eb61f4b4, type: 3}
 --- !u!4 &6598123888937429522 stripped
@@ -175,6 +180,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sm_barrel_a (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b77f6dcb8a6615144a370789eb61f4b4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b77f6dcb8a6615144a370789eb61f4b4, type: 3}
@@ -251,6 +261,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: sm_wooden_palet_a
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f34daa237bedd034898a61ef02ae4287,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f34daa237bedd034898a61ef02ae4287, type: 3}
 --- !u!4 &6598123888124423937 stripped
@@ -325,6 +340,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: sm_barrel_a
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b77f6dcb8a6615144a370789eb61f4b4,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b77f6dcb8a6615144a370789eb61f4b4, type: 3}
