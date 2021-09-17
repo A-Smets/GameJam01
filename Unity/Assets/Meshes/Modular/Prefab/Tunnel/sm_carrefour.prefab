@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 9075997044939581271}
   - component: {fileID: 9075997044939581270}
   - component: {fileID: 9075997044939581274}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sm_carrefour
   m_TagString: Untagged
   m_Icon: {fileID: 0}

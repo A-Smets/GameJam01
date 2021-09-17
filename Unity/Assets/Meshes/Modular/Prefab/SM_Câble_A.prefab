@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7131885149663361854}
   - component: {fileID: 4980273687413493748}
   - component: {fileID: 5976834525900383337}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: "SM_C\xE2ble_A"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
