@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3055249158504397087}
   - component: {fileID: 2146448429331003066}
   - component: {fileID: 4192077406089560688}
+  - component: {fileID: 6007091131561312128}
   m_Layer: 0
   m_Name: sm_floor_hole_a
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6007091131561312128
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2390773962453246885}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.14161968, y: 0.036108807, z: 0.14537051}
+  m_Center: {x: 0.0018754005, y: 0.018054403, z: -0.0000000037252903}

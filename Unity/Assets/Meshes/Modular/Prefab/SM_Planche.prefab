@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 428259775413267051}
   - component: {fileID: 3629514728697996750}
   - component: {fileID: 1565659630531989764}
+  - component: {fileID: 6261359445309033527}
   m_Layer: 0
   m_Name: SM_Planche
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6261359445309033527
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061349038184001745}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.09472687, y: 0.011620749, z: 0.60651106}
+  m_Center: {x: 0.00003667179, y: 0.0041897725, z: 1.248614e-10}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 472143906657490409}
   - component: {fileID: 3540603315670768204}
   - component: {fileID: 1641079090862665350}
+  - component: {fileID: -2415762812637320794}
   m_Layer: 0
   m_Name: SM_Rebord_C
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-2415762812637320794
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992679561342685011}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000007, y: 0.12560013, z: 0.2778013}
+  m_Center: {x: -0.5, y: 0.062800065, z: 0.13890065}
