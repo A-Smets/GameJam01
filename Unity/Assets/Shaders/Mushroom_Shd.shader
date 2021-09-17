@@ -7,13 +7,15 @@ Shader "Custom/VFX/Mushroom"
 		[HideInInspector] _AlphaCutoff("Alpha Cutoff ", Range(0, 1)) = 0.5
 		[HideInInspector] _EmissionColor("Emission Color", Color) = (1,1,1,1)
 		[ASEBegin]_Progress("Progress", Range( 0 , 1)) = 0
+		_BaseColor("Base Color", 2D) = "white" {}
+		_Normal("Normal", 2D) = "bump" {}
+		_ORM("ORM", 2D) = "white" {}
 		_SpotsMask("Spots Mask", 2D) = "white" {}
 		_MaxThresholdLow("Max Threshold Low", Range( 0 , 1)) = 0
 		_MaskThresholdHigh("Mask Threshold High", Range( 0 , 1)) = 0.5
 		_SpotsIntensity("Spots Intensity", Float) = 1
-		_StartColor("Start Color", Color) = (1,0,0,0)
-		_EndColor("End Color", Color) = (0,1,1,0)
-		[ASEEnd]_SpotsColor("Spots Color", Color) = (0,0,0,0)
+		_SpotsColor("Spots Color", Color) = (0,0,0,0)
+		[ASEEnd]_RottenDesaturationFactor("Rotten Desaturation Factor", Range( 0 , 1)) = 0.5
 		[HideInInspector] _texcoord( "", 2D ) = "white" {}
 
 		//_TransmissionShadow( "Transmission Shadow", Range( 0, 1 ) ) = 0.5
@@ -163,6 +165,7 @@ Shader "Custom/VFX/Mushroom"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
+			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 999999
 
 			#pragma prefer_hlslcc gles
@@ -231,10 +234,12 @@ Shader "Custom/VFX/Mushroom"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _StartColor;
-			float4 _EndColor;
+			float4 _BaseColor_ST;
 			float4 _SpotsColor;
 			float4 _SpotsMask_ST;
+			float4 _Normal_ST;
+			float4 _ORM_ST;
+			float _RottenDesaturationFactor;
 			float _Progress;
 			float _MaxThresholdLow;
 			float _MaskThresholdHigh;
@@ -259,7 +264,10 @@ Shader "Custom/VFX/Mushroom"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
+			sampler2D _BaseColor;
 			sampler2D _SpotsMask;
+			sampler2D _Normal;
+			sampler2D _ORM;
 
 
 			
@@ -449,18 +457,28 @@ Shader "Custom/VFX/Mushroom"
 	
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 lerpResult11 = lerp( _StartColor , _EndColor , _Progress);
+				float2 uv_BaseColor = IN.ase_texcoord7.xy * _BaseColor_ST.xy + _BaseColor_ST.zw;
+				float4 tex2DNode23 = tex2D( _BaseColor, uv_BaseColor );
+				float3 desaturateInitialColor24 = tex2DNode23.rgb;
+				float desaturateDot24 = dot( desaturateInitialColor24, float3( 0.299, 0.587, 0.114 ));
+				float3 desaturateVar24 = lerp( desaturateInitialColor24, desaturateDot24.xxx, _RottenDesaturationFactor );
+				float4 lerpResult11 = lerp( tex2DNode23 , float4( desaturateVar24 , 0.0 ) , _Progress);
 				float2 uv_SpotsMask = IN.ase_texcoord7.xy * _SpotsMask_ST.xy + _SpotsMask_ST.zw;
 				float smoothstepResult17 = smoothstep( _MaxThresholdLow , _MaskThresholdHigh , tex2D( _SpotsMask, uv_SpotsMask ).r);
 				float4 lerpResult15 = lerp( lerpResult11 , _SpotsColor , ( _Progress * smoothstepResult17 * _SpotsIntensity ));
 				
+				float2 uv_Normal = IN.ase_texcoord7.xy * _Normal_ST.xy + _Normal_ST.zw;
+				
+				float2 uv_ORM = IN.ase_texcoord7.xy * _ORM_ST.xy + _ORM_ST.zw;
+				float4 tex2DNode26 = tex2D( _ORM, uv_ORM );
+				
 				float3 Albedo = lerpResult15.rgb;
-				float3 Normal = float3(0, 0, 1);
+				float3 Normal = UnpackNormalScale( tex2D( _Normal, uv_Normal ), 1.0f );
 				float3 Emission = 0;
 				float3 Specular = 0.5;
-				float Metallic = 0;
-				float Smoothness = 0.5;
-				float Occlusion = 1;
+				float Metallic = tex2DNode26.b;
+				float Smoothness = ( 1.0 - tex2DNode26.g );
+				float Occlusion = tex2DNode26.r;
 				float Alpha = 1;
 				float AlphaClipThreshold = 0.5;
 				float AlphaClipThresholdShadow = 0.5;
@@ -625,6 +643,7 @@ Shader "Custom/VFX/Mushroom"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
+			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 999999
 
 			#pragma prefer_hlslcc gles
@@ -665,10 +684,12 @@ Shader "Custom/VFX/Mushroom"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _StartColor;
-			float4 _EndColor;
+			float4 _BaseColor_ST;
 			float4 _SpotsColor;
 			float4 _SpotsMask_ST;
+			float4 _Normal_ST;
+			float4 _ORM_ST;
+			float _RottenDesaturationFactor;
 			float _Progress;
 			float _MaxThresholdLow;
 			float _MaskThresholdHigh;
@@ -879,6 +900,7 @@ Shader "Custom/VFX/Mushroom"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
+			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 999999
 
 			#pragma prefer_hlslcc gles
@@ -919,10 +941,12 @@ Shader "Custom/VFX/Mushroom"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _StartColor;
-			float4 _EndColor;
+			float4 _BaseColor_ST;
 			float4 _SpotsColor;
 			float4 _SpotsMask_ST;
+			float4 _Normal_ST;
+			float4 _ORM_ST;
+			float _RottenDesaturationFactor;
 			float _Progress;
 			float _MaxThresholdLow;
 			float _MaskThresholdHigh;
@@ -1116,6 +1140,7 @@ Shader "Custom/VFX/Mushroom"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
+			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 999999
 
 			#pragma prefer_hlslcc gles
@@ -1160,10 +1185,12 @@ Shader "Custom/VFX/Mushroom"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _StartColor;
-			float4 _EndColor;
+			float4 _BaseColor_ST;
 			float4 _SpotsColor;
 			float4 _SpotsMask_ST;
+			float4 _Normal_ST;
+			float4 _ORM_ST;
+			float _RottenDesaturationFactor;
 			float _Progress;
 			float _MaxThresholdLow;
 			float _MaskThresholdHigh;
@@ -1188,6 +1215,7 @@ Shader "Custom/VFX/Mushroom"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
+			sampler2D _BaseColor;
 			sampler2D _SpotsMask;
 
 
@@ -1337,7 +1365,12 @@ Shader "Custom/VFX/Mushroom"
 					#endif
 				#endif
 
-				float4 lerpResult11 = lerp( _StartColor , _EndColor , _Progress);
+				float2 uv_BaseColor = IN.ase_texcoord2.xy * _BaseColor_ST.xy + _BaseColor_ST.zw;
+				float4 tex2DNode23 = tex2D( _BaseColor, uv_BaseColor );
+				float3 desaturateInitialColor24 = tex2DNode23.rgb;
+				float desaturateDot24 = dot( desaturateInitialColor24, float3( 0.299, 0.587, 0.114 ));
+				float3 desaturateVar24 = lerp( desaturateInitialColor24, desaturateDot24.xxx, _RottenDesaturationFactor );
+				float4 lerpResult11 = lerp( tex2DNode23 , float4( desaturateVar24 , 0.0 ) , _Progress);
 				float2 uv_SpotsMask = IN.ase_texcoord2.xy * _SpotsMask_ST.xy + _SpotsMask_ST.zw;
 				float smoothstepResult17 = smoothstep( _MaxThresholdLow , _MaskThresholdHigh , tex2D( _SpotsMask, uv_SpotsMask ).r);
 				float4 lerpResult15 = lerp( lerpResult11 , _SpotsColor , ( _Progress * smoothstepResult17 * _SpotsIntensity ));
@@ -1380,6 +1413,7 @@ Shader "Custom/VFX/Mushroom"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
+			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 999999
 
 			#pragma enable_d3d11_debug_symbols
@@ -1424,10 +1458,12 @@ Shader "Custom/VFX/Mushroom"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _StartColor;
-			float4 _EndColor;
+			float4 _BaseColor_ST;
 			float4 _SpotsColor;
 			float4 _SpotsMask_ST;
+			float4 _Normal_ST;
+			float4 _ORM_ST;
+			float _RottenDesaturationFactor;
 			float _Progress;
 			float _MaxThresholdLow;
 			float _MaskThresholdHigh;
@@ -1452,6 +1488,7 @@ Shader "Custom/VFX/Mushroom"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
+			sampler2D _BaseColor;
 			sampler2D _SpotsMask;
 
 
@@ -1598,7 +1635,12 @@ Shader "Custom/VFX/Mushroom"
 					#endif
 				#endif
 
-				float4 lerpResult11 = lerp( _StartColor , _EndColor , _Progress);
+				float2 uv_BaseColor = IN.ase_texcoord2.xy * _BaseColor_ST.xy + _BaseColor_ST.zw;
+				float4 tex2DNode23 = tex2D( _BaseColor, uv_BaseColor );
+				float3 desaturateInitialColor24 = tex2DNode23.rgb;
+				float desaturateDot24 = dot( desaturateInitialColor24, float3( 0.299, 0.587, 0.114 ));
+				float3 desaturateVar24 = lerp( desaturateInitialColor24, desaturateDot24.xxx, _RottenDesaturationFactor );
+				float4 lerpResult11 = lerp( tex2DNode23 , float4( desaturateVar24 , 0.0 ) , _Progress);
 				float2 uv_SpotsMask = IN.ase_texcoord2.xy * _SpotsMask_ST.xy + _SpotsMask_ST.zw;
 				float smoothstepResult17 = smoothstep( _MaxThresholdLow , _MaskThresholdHigh , tex2D( _SpotsMask, uv_SpotsMask ).r);
 				float4 lerpResult15 = lerp( lerpResult11 , _SpotsColor , ( _Progress * smoothstepResult17 * _SpotsIntensity ));
@@ -1637,6 +1679,7 @@ Shader "Custom/VFX/Mushroom"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
+			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 999999
 
 			#pragma prefer_hlslcc gles
@@ -1678,10 +1721,12 @@ Shader "Custom/VFX/Mushroom"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _StartColor;
-			float4 _EndColor;
+			float4 _BaseColor_ST;
 			float4 _SpotsColor;
 			float4 _SpotsMask_ST;
+			float4 _Normal_ST;
+			float4 _ORM_ST;
+			float _RottenDesaturationFactor;
 			float _Progress;
 			float _MaxThresholdLow;
 			float _MaskThresholdHigh;
@@ -1884,6 +1929,7 @@ Shader "Custom/VFX/Mushroom"
 			#pragma multi_compile _ LOD_FADE_CROSSFADE
 			#pragma multi_compile_fog
 			#define ASE_FOG 1
+			#define _NORMALMAP 1
 			#define ASE_SRP_VERSION 999999
 
 			#pragma prefer_hlslcc gles
@@ -1953,10 +1999,12 @@ Shader "Custom/VFX/Mushroom"
 			};
 
 			CBUFFER_START(UnityPerMaterial)
-			float4 _StartColor;
-			float4 _EndColor;
+			float4 _BaseColor_ST;
 			float4 _SpotsColor;
 			float4 _SpotsMask_ST;
+			float4 _Normal_ST;
+			float4 _ORM_ST;
+			float _RottenDesaturationFactor;
 			float _Progress;
 			float _MaxThresholdLow;
 			float _MaskThresholdHigh;
@@ -1981,6 +2029,7 @@ Shader "Custom/VFX/Mushroom"
 				float _TessMaxDisp;
 			#endif
 			CBUFFER_END
+			sampler2D _BaseColor;
 			sampler2D _SpotsMask;
 
 
@@ -2171,7 +2220,12 @@ Shader "Custom/VFX/Mushroom"
 	
 				WorldViewDirection = SafeNormalize( WorldViewDirection );
 
-				float4 lerpResult11 = lerp( _StartColor , _EndColor , _Progress);
+				float2 uv_BaseColor = IN.ase_texcoord7.xy * _BaseColor_ST.xy + _BaseColor_ST.zw;
+				float4 tex2DNode23 = tex2D( _BaseColor, uv_BaseColor );
+				float3 desaturateInitialColor24 = tex2DNode23.rgb;
+				float desaturateDot24 = dot( desaturateInitialColor24, float3( 0.299, 0.587, 0.114 ));
+				float3 desaturateVar24 = lerp( desaturateInitialColor24, desaturateDot24.xxx, _RottenDesaturationFactor );
+				float4 lerpResult11 = lerp( tex2DNode23 , float4( desaturateVar24 , 0.0 ) , _Progress);
 				float2 uv_SpotsMask = IN.ase_texcoord7.xy * _SpotsMask_ST.xy + _SpotsMask_ST.zw;
 				float smoothstepResult17 = smoothstep( _MaxThresholdLow , _MaskThresholdHigh , tex2D( _SpotsMask, uv_SpotsMask ).r);
 				float4 lerpResult15 = lerp( lerpResult11 , _SpotsColor , ( _Progress * smoothstepResult17 * _SpotsIntensity ));
@@ -2331,39 +2385,50 @@ Shader "Custom/VFX/Mushroom"
 }
 /*ASEBEGIN
 Version=18800
-153;248;1060;781;1584.362;714.3323;1.445446;True;False
-Node;AmplifyShaderEditor.SamplerNode;8;-1098.047,-60.782;Inherit;True;Property;_SpotsMask;Spots Mask;1;0;Create;True;0;0;0;False;0;False;-1;6668b5c54ac2a9f4ebceea6d968cf7d2;6668b5c54ac2a9f4ebceea6d968cf7d2;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;14;-1081.045,228.218;Inherit;False;Property;_MaskThresholdHigh;Mask Threshold High;3;0;Create;True;0;0;0;False;0;False;0.5;0.341;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;20;-1079.048,138.6186;Inherit;False;Property;_MaxThresholdLow;Max Threshold Low;2;0;Create;True;0;0;0;False;0;False;0;0.756;0;1;0;1;FLOAT;0
+162;259;1067;757;1594.096;394.5382;1.788614;True;False
+Node;AmplifyShaderEditor.SamplerNode;8;-1098.047,-60.782;Inherit;True;Property;_SpotsMask;Spots Mask;4;0;Create;True;0;0;0;False;0;False;-1;6668b5c54ac2a9f4ebceea6d968cf7d2;6668b5c54ac2a9f4ebceea6d968cf7d2;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;14;-1081.045,228.218;Inherit;False;Property;_MaskThresholdHigh;Mask Threshold High;6;0;Create;True;0;0;0;False;0;False;0.5;0.341;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;20;-1079.048,138.6186;Inherit;False;Property;_MaxThresholdLow;Max Threshold Low;5;0;Create;True;0;0;0;False;0;False;0;0.756;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.SamplerNode;23;-1327.579,-476.6633;Inherit;True;Property;_BaseColor;Base Color;1;0;Create;True;0;0;0;False;0;False;-1;094ce12b844779641b442c6df7e4e988;094ce12b844779641b442c6df7e4e988;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.RangedFloatNode;28;-1310.907,-251.6212;Inherit;False;Property;_RottenDesaturationFactor;Rotten Desaturation Factor;9;0;Create;True;0;0;0;False;0;False;0.5;0.5;0;1;0;1;FLOAT;0
 Node;AmplifyShaderEditor.SmoothstepOpNode;17;-747.6476,60.81868;Inherit;False;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;1;False;1;FLOAT;0
-Node;AmplifyShaderEditor.RangedFloatNode;12;-1095.019,-182.5534;Inherit;False;Property;_Progress;Progress;0;0;Create;True;0;0;0;False;0;False;0;0.943;0;1;0;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;10;-1045.82,-380.8533;Inherit;False;Property;_EndColor;End Color;6;0;Create;True;0;0;0;False;0;False;0,1,1,0;0.45,0.2475,0.2475,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.ColorNode;9;-1027.819,-584.3527;Inherit;False;Property;_StartColor;Start Color;5;0;Create;True;0;0;0;False;0;False;1,0,0,0;1,0,0,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
-Node;AmplifyShaderEditor.RangedFloatNode;22;-766.5193,192.1991;Inherit;False;Property;_SpotsIntensity;Spots Intensity;4;0;Create;True;0;0;0;False;0;False;1;1;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;22;-766.5193,192.1991;Inherit;False;Property;_SpotsIntensity;Spots Intensity;7;0;Create;True;0;0;0;False;0;False;1;1;0;0;0;1;FLOAT;0
+Node;AmplifyShaderEditor.RangedFloatNode;12;-1083.11,-146.8266;Inherit;False;Property;_Progress;Progress;0;0;Create;True;0;0;0;False;0;False;0;0;0;1;0;1;FLOAT;0
+Node;AmplifyShaderEditor.DesaturateOpNode;24;-980.2314,-275.6532;Inherit;False;2;0;FLOAT3;0,0,0;False;1;FLOAT;0.5;False;1;FLOAT3;0
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;21;-549.0167,-16.05591;Inherit;False;3;3;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT;0
-Node;AmplifyShaderEditor.ColorNode;16;-625.4625,-418.8182;Inherit;False;Property;_SpotsColor;Spots Color;7;0;Create;True;0;0;0;False;0;False;0,0,0,0;0.13,0.2,0.13,0;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.ColorNode;16;-625.4625,-418.8182;Inherit;False;Property;_SpotsColor;Spots Color;8;0;Create;True;0;0;0;False;0;False;0,0,0,0;0.1333332,0.1999999,0,1;True;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.LerpOp;11;-586.3489,-201.3546;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
+Node;AmplifyShaderEditor.OneMinusNode;27;-187.9449,181.5652;Inherit;False;1;0;FLOAT;0;False;1;FLOAT;0
+Node;AmplifyShaderEditor.SamplerNode;26;-551.681,326.3913;Inherit;True;Property;_ORM;ORM;3;0;Create;True;0;0;0;False;0;False;-1;85f0d210ac70b7c43a3b9750de785adc;85f0d210ac70b7c43a3b9750de785adc;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
+Node;AmplifyShaderEditor.SamplerNode;25;-539.0938,121.5431;Inherit;True;Property;_Normal;Normal;2;0;Create;True;0;0;0;False;0;False;-1;1e434679dc46ac547aca05c58e013d70;1e434679dc46ac547aca05c58e013d70;True;0;True;bump;Auto;True;Object;-1;Auto;Texture2D;8;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;6;FLOAT;0;False;7;SAMPLERSTATE;;False;5;FLOAT3;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.LerpOp;15;-349.7479,-188.7817;Inherit;False;3;0;COLOR;0,0,0,0;False;1;COLOR;0,0,0,0;False;2;FLOAT;0;False;1;COLOR;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;6;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthNormals;0;6;DepthNormals;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;-1;True;3;False;-1;False;True;1;LightMode=DepthNormals;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;5;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Universal2D;0;5;Universal2D;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;1;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;False;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=Universal2D;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;7;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;GBuffer;0;7;GBuffer;5;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;1;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalGBuffer;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;True;0;False;-1;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;0;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;True;0;False;-1;False;True;False;False;False;False;0;False;-1;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=DepthOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Meta;0;4;Meta;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;-25.6,-278.4001;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;2;Custom/VFX/Mushroom;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;17;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;1;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalForward;False;0;Hidden/InternalErrorShader;0;0;Standard;36;Workflow;1;Surface;0;  Refraction Model;0;  Blend;0;Two Sided;1;Fragment Normal Space,InvertActionOnDeselection;0;Transmission;0;  Transmission Shadow;0.5,False,-1;Translucency;0;  Translucency Strength;1,False,-1;  Normal Distortion;0.5,False,-1;  Scattering;2,False,-1;  Direct;0.9,False,-1;  Ambient;0.1,False,-1;  Shadow;0.5,False,-1;Cast Shadows;1;  Use Shadow Threshold;0;Receive Shadows;1;GPU Instancing;1;LOD CrossFade;1;Built-in Fog;1;_FinalColorxAlpha;0;Meta Pass;1;Override Baked GI;0;Extra Pre Pass;0;DOTS Instancing;0;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;8;False;True;True;True;True;True;True;True;False;;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;5;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Universal2D;0;5;Universal2D;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;1;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;False;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=Universal2D;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;188.7605,19.32275;Float;False;True;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;2;Custom/VFX/Mushroom;94348b07e5e8bab40bd6c8a1e3df54cd;True;Forward;0;1;Forward;17;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;1;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;1;LightMode=UniversalForward;False;0;Hidden/InternalErrorShader;0;0;Standard;36;Workflow;1;Surface;0;  Refraction Model;0;  Blend;0;Two Sided;1;Fragment Normal Space,InvertActionOnDeselection;0;Transmission;0;  Transmission Shadow;0.5,False,-1;Translucency;0;  Translucency Strength;1,False,-1;  Normal Distortion;0.5,False,-1;  Scattering;2,False,-1;  Direct;0.9,False,-1;  Ambient;0.1,False,-1;  Shadow;0.5,False,-1;Cast Shadows;1;  Use Shadow Threshold;0;Receive Shadows;1;GPU Instancing;1;LOD CrossFade;1;Built-in Fog;1;_FinalColorxAlpha;0;Meta Pass;1;Override Baked GI;0;Extra Pre Pass;0;DOTS Instancing;0;Tessellation;0;  Phong;0;  Strength;0.5,False,-1;  Type;0;  Tess;16,False,-1;  Min;10,False,-1;  Max;25,False,-1;  Edge Length;16,False,-1;  Max Displacement;25,False,-1;Vertex Position,InvertActionOnDeselection;1;0;8;False;True;True;True;True;True;True;True;False;;False;0
 Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;2;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ShadowCaster;0;2;ShadowCaster;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;True;0;False;-1;False;False;False;False;False;False;True;1;False;-1;True;3;False;-1;False;True;1;LightMode=ShadowCaster;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;3;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthOnly;0;3;DepthOnly;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;True;0;False;-1;False;True;False;False;False;False;0;False;-1;False;False;False;False;True;1;False;-1;False;False;True;1;LightMode=DepthOnly;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;0;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;ExtraPrePass;0;0;ExtraPrePass;5;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;True;0;False;-1;True;True;True;True;True;0;False;-1;False;False;False;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;1;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;0;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;6;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;DepthNormals;0;6;DepthNormals;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;True;1;1;False;-1;0;False;-1;0;1;False;-1;0;False;-1;False;False;False;False;False;False;False;False;False;False;False;False;False;False;True;1;False;-1;True;3;False;-1;False;True;1;LightMode=DepthNormals;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;4;0,0;Float;False;False;-1;2;UnityEditor.ShaderGraph.PBRMasterGUI;0;1;New Amplify Shader;94348b07e5e8bab40bd6c8a1e3df54cd;True;Meta;0;4;Meta;0;False;False;False;False;False;False;False;False;True;0;False;-1;True;0;False;-1;False;False;False;False;False;False;False;False;True;3;RenderPipeline=UniversalPipeline;RenderType=Opaque=RenderType;Queue=Geometry=Queue=0;True;0;0;False;False;False;False;False;False;False;False;False;True;2;False;-1;False;False;False;False;False;False;False;False;True;1;LightMode=Meta;False;0;Hidden/InternalErrorShader;0;0;Standard;0;False;0
 WireConnection;17;0;8;1
 WireConnection;17;1;20;0
 WireConnection;17;2;14;0
+WireConnection;24;0;23;0
+WireConnection;24;1;28;0
 WireConnection;21;0;12;0
 WireConnection;21;1;17;0
 WireConnection;21;2;22;0
-WireConnection;11;0;9;0
-WireConnection;11;1;10;0
+WireConnection;11;0;23;0
+WireConnection;11;1;24;0
 WireConnection;11;2;12;0
+WireConnection;27;0;26;2
 WireConnection;15;0;11;0
 WireConnection;15;1;16;0
 WireConnection;15;2;21;0
 WireConnection;1;0;15;0
+WireConnection;1;1;25;0
+WireConnection;1;3;26;3
+WireConnection;1;4;27;0
+WireConnection;1;5;26;1
 ASEEND*/
-//CHKSM=47850653E6BA24FD05030BEE265BF248F45CA913
+//CHKSM=217722CC96CCF94FD3FE41EA650B5B5CD2AD7D40
