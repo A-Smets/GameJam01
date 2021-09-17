@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: 0_TrapList
   m_EditorClassIdentifier: 
   m_TrapStates:
+  - {fileID: 11400000, guid: 09f7cc4541cf82f47bb79318257d5d52, type: 2}
   - {fileID: 11400000, guid: a36402bd80e2eea49991ca4e8ba290d0, type: 2}

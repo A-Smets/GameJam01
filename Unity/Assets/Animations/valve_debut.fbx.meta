@@ -58,7 +58,31 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.25157577
+        functionName: SpawnIdlePS
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: f06b732008ebc0847a9a90eebf390a21,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.48863634
+        functionName: SpawnIdlePS
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: f06b732008ebc0847a9a90eebf390a21,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7537879
+        functionName: SpawnIdlePS
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: f06b732008ebc0847a9a90eebf390a21,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
