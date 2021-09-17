@@ -8,7 +8,12 @@ public class Trap_Test : Trap
     [SerializeField, TitleGroup("Type Specific")] private Renderer m_Rend;
     [SerializeField, TitleGroup("Type Specific")] private Color m_ActivatedColor = new Color(1f, 0f, 0f, 1f);
 
-    protected override void SpringTrap()
+    protected override void SetPostActivate()
+    {
+        m_Rend.material.color = m_ActivatedColor;
+    }
+
+    protected override void SpringTrap(GameObject playerObj)
     {
         m_Rend.material.color = m_ActivatedColor;
     }
