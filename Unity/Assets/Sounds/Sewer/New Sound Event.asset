@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3cf94bb981ae6184fad48cd5bed2d5ff, type: 3}
-  m_Name: SewerTestSE
+  m_Name: New Sound Event
   m_EditorClassIdentifier: 
   clips:
-  - {fileID: 8300000, guid: 1ae207e962e8f6741b4838e96a3ab87c, type: 3}
   - {fileID: 8300000, guid: c466e2dfa115e45479de28e7bb74dba1, type: 3}
-  volume: {x: 0.75, y: 1.25}
-  pitch: {x: 0.75, y: 1.25}
-  loop: 0
-  mixerGroup: {fileID: 0}
+  volume: {x: 1.0361598, y: 1.5361598}
+  pitch: {x: 1, y: 1}
+  loop: 1
+  mixerGroup: {fileID: -1799262517577503292, guid: edcf6e99aa709ac499b39d98b9b5b097,
+    type: 2}
