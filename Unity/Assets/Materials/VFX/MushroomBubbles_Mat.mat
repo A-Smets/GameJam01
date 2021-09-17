@@ -27,7 +27,7 @@ Material:
     - _AlphaCutoff: 0.5
     - _Channel: 3
     - _ColorIntensity: 1.3
-    - _DepthFadeDistance1: 0.05
+    - _DepthFadeDistance1: 0.005
     m_Colors:
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
