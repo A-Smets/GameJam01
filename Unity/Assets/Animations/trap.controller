@@ -37,7 +37,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: TRAP TRIGGERED
+    m_ConditionEvent: PostActivate
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3817539835114990147}
@@ -62,13 +62,13 @@ AnimatorController:
   m_Name: trap
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: TRAP ACTIVATED
+  - m_Name: Activate
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: TRAP TRIGGERED
+  - m_Name: PostActivate
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -138,7 +138,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: TRAP ACTIVATED
+    m_ConditionEvent: Activate
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3542888832744089262}
