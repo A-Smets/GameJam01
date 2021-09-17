@@ -192,20 +192,6 @@
         {
             "m_OutputSlot": {
                 "m_Node": {
-                    "m_Id": "146711ff212f4a148e5863dbee6b0d81"
-                },
-                "m_SlotId": 2
-            },
-            "m_InputSlot": {
-                "m_Node": {
-                    "m_Id": "15b7565f2b8b425ea4c7ecdb2613018c"
-                },
-                "m_SlotId": 0
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
                     "m_Id": "175cd00a291b4602bae79a272639acf8"
                 },
                 "m_SlotId": 4
@@ -3374,7 +3360,7 @@
     "m_Hidden": false,
     "m_ShaderOutputName": "Smoothness",
     "m_StageCapability": 2,
-    "m_Value": 0.5,
+    "m_Value": 0.800000011920929,
     "m_DefaultValue": 0.5,
     "m_Labels": []
 }
@@ -5108,9 +5094,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1512.0,
-            "y": 504.00006103515627,
-            "width": 144.66664123535157,
+            "x": -1814.0,
+            "y": 597.0,
+            "width": 142.0,
             "height": 34.0
         }
     },
