@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 748977153208371347}
   m_Layer: 0
-  m_Name: sm_deadend_A (3)
+  m_Name: sm_deadend_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
