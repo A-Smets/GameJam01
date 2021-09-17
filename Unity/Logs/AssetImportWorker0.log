@@ -542,3 +542,4 @@ Received Import Request.
 Start importing Assets/Meshes/sm_can_a.fbx using Guid(7310c0a85561397458fe8863139a11e4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c50871afdbc803b8dc1a672d360f21ed') in 0.028576 seconds
   Import took 0.036181 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
