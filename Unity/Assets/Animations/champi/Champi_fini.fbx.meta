@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 2c9a1638315a3c24da4b756009b25adc
+guid: bfb43c1e26f9bb14381ff70d7bd07072
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: Start_shroom
+    second: anim_shroom
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Start_shroom
+      name: anim_shroom
       takeName: Take 001
       internalID: 0
       firstFrame: 1
-      lastFrame: 1.1
+      lastFrame: 157
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -122,7 +122,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 365714c805ee5984980c59e3f2909cb5,
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 8ab7458829e965345b6863d25fa1302b,
     type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2

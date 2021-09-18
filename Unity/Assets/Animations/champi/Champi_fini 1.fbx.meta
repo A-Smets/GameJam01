@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 3eb1b77144c377746aeb1bcf561526d8
+guid: 8ab7458829e965345b6863d25fa1302b
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable:
   - first:
       74: 1827226128182048838
-    second: end_shroom
+    second: idle_shroom
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: end_shroom
+      name: idle_shroom
       takeName: Take 001
       internalID: 0
-      firstFrame: 59.9
-      lastFrame: 60
+      firstFrame: 1
+      lastFrame: 2
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
