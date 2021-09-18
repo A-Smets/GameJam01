@@ -26,4 +26,6 @@ public class Trap_Mushroom : Trap
     {
         m_KillerCollider.enabled = true;
     }
+
+
 }
