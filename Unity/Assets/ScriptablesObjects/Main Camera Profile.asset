@@ -69,6 +69,7 @@ MonoBehaviour:
   - {fileID: 6601467292458767215}
   - {fileID: 1753770150058306499}
   - {fileID: 3302224805613399674}
+  - {fileID: 6459202548466301621}
 --- !u!114 &1753770150058306499
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -128,6 +129,44 @@ MonoBehaviour:
   gain:
     m_OverrideState: 0
     m_Value: {x: 1, y: 1, z: 1, w: 0}
+--- !u!114 &6459202548466301621
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
+  m_Name: ColorAdjustments
+  m_EditorClassIdentifier: 
+  active: 1
+  m_AdvancedMode: 0
+  postExposure:
+    m_OverrideState: 1
+    m_Value: 0.69
+  contrast:
+    m_OverrideState: 0
+    m_Value: 0
+    min: -100
+    max: 100
+  colorFilter:
+    m_OverrideState: 1
+    m_Value: {r: 0.857007, g: 0.9, b: 0.85499996, a: 1}
+    hdr: 1
+    showAlpha: 0
+    showEyeDropper: 1
+  hueShift:
+    m_OverrideState: 0
+    m_Value: 0
+    min: -180
+    max: 180
+  saturation:
+    m_OverrideState: 1
+    m_Value: -15
+    min: -100
+    max: 100
 --- !u!114 &6601467292458767215
 MonoBehaviour:
   m_ObjectHideFlags: 3
