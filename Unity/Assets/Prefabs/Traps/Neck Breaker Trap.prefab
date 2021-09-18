@@ -471,7 +471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f83727d50035704798d3eaa76120ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WasSprung: {fileID: 11400000, guid: a36402bd80e2eea49991ca4e8ba290d0, type: 2}
+  m_WasSprung: {fileID: 0}
   m_TriggerCollider: {fileID: 8735107584507639972}
   m_PlayerLayer: 6
   m_ActivationChance: 0.65
