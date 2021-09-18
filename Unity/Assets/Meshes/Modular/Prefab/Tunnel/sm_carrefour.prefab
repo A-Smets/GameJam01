@@ -17,8 +17,6 @@ GameObject:
   - component: {fileID: 9075997044939581273}
   - component: {fileID: 9075997044939581272}
   - component: {fileID: 9075997044939581271}
-  - component: {fileID: 9075997044939581270}
-  - component: {fileID: 9075997044939581274}
   m_Layer: 9
   m_Name: sm_carrefour
   m_TagString: Untagged
@@ -167,29 +165,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06192015, y: 1, z: 1.1019337}
   m_Center: {x: 3.0306673, y: 0.5, z: -0.50981736}
---- !u!65 &9075997044939581270
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8157429496299008356}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2923428, y: 0.14773904, z: 1.2888572}
-  m_Center: {x: 2.3538294, y: 0.07386952, z: -1.3555717}
---- !u!65 &9075997044939581274
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8157429496299008356}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.2806474, y: 0.28261584, z: 1.2893697}
-  m_Center: {x: 0.63188994, y: 0.14130792, z: -1.3553154}
