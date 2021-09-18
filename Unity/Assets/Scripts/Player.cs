@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField, TitleGroup("Animation"), ReadOnly] private float m_IdleBreakTimer;
     private bool m_IsJumping;
     private bool m_IncrementIdleTimer = true;
+    private float m_JumpCD;
     [SerializeField, ReadOnly] private bool m_Active = true;
     private const float JUMP_MIN_VELOCITY = .05f;
     [ShowInInspector, ReadOnly, TitleGroup("Components")] private bool CanJump
@@ -32,6 +33,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         m_Active = true;
+        m_JumpCD = 0;
     }
     private void Update()
     {
@@ -95,7 +97,7 @@ public class Player : MonoBehaviour
     }
     private void ManageJump()
     {
-        if (CanJump && m_Inputs.A) m_Animator.SetTrigger(m_AnimatorJumpStart);
+        if (CanJump && m_Inputs.A && m_JumpCD <= Time.timeSinceLevelLoad) m_Animator.SetTrigger(m_AnimatorJumpStart);
 
         //Land
         if (m_IsJumping && Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY * 10)
@@ -132,6 +134,7 @@ public class Player : MonoBehaviour
 
     public void SetActive(bool value)
     {
+        m_JumpCD = Time.timeSinceLevelLoad + .05f;
         m_Active = value;
     }
 }
