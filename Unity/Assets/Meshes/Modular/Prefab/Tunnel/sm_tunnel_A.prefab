@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5231984272771441611}
   - component: {fileID: 8034222381015242497}
   - component: {fileID: 7144475483033296346}
-  - component: {fileID: 2631698488806433064}
+  - component: {fileID: 8420038602650546112}
   m_Layer: 9
   m_Name: sm_tunnel_A
   m_TagString: Untagged
@@ -94,9 +94,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.99923533, z: 0.021084309}
-  m_Center: {x: -1, y: 0.49961767, z: 0.99505496}
---- !u!65 &2631698488806433064
+  m_Size: {x: 2, y: 0.99923533, z: 0.057501256}
+  m_Center: {x: -1, y: 0.49961767, z: 1.0253031}
+--- !u!65 &8420038602650546112
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,5 +107,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 147458, y: 1.0006143, z: 0.028690815}
-  m_Center: {x: -73729, y: 0.50030714, z: 0.0143454075}
+  m_Size: {x: 2, y: 0.99923533, z: 0.075725496}
+  m_Center: {x: -1, y: 0.49961767, z: -0.028847694}
