@@ -16,6 +16,6 @@ MonoBehaviour:
   clamping: 1
   minSO: {fileID: 0}
   maxSO: {fileID: 0}
-  minConst: 1
+  minConst: 0.54
   maxConst: 100
   constant: 0

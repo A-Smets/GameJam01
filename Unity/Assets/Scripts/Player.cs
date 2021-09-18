@@ -8,25 +8,25 @@ public class Player : MonoBehaviour
     [SerializeField, TitleGroup("Components")] private Rigidbody m_RB;
     [SerializeField, TitleGroup("Components")] private PlayerInputs m_Inputs;
     [SerializeField, TitleGroup("Components")] private GameEvent m_DeathEvent;
-    [SerializeField, TitleGroup("Components")] private FloatSO m_MoveSpeed;
-    [SerializeField, TitleGroup("Components")] private FloatSO m_RotationSpeed;
-    [SerializeField, TitleGroup("Components")] private FloatSO m_JumpForce;
+    [SerializeField, TitleGroup("Movement")] private FloatSO m_MoveSpeed;
+    [SerializeField, TitleGroup("Movement")] private FloatSO m_RotationSpeed;
+    [SerializeField, TitleGroup("Movement")] private FloatSO m_JumpForce;
+    [SerializeField, TitleGroup("Movement"), Range(1f, 5f)] private float m_FallSpeedUp;
     [SerializeField, TitleGroup("Animation")] private Animator m_Animator;
     [SerializeField, TitleGroup("Animation")] private string m_AnimatorMove;
     [SerializeField, TitleGroup("Animation")] private string m_AnimatorJumpStart;
     [SerializeField, TitleGroup("Animation")] private string m_AnimatorJumpEnd;
-    [SerializeField, TitleGroup("Animation")] private string m_AnimatorDeath;
+    [SerializeField, TitleGroup("Animation")] private string m_AnimatorDeath;  
     [SerializeField, TitleGroup("Animation")] private string m_AnimatorIdleBreak;
     [SerializeField, TitleGroup("Animation")] private float m_IdleBreakThreshold = 3;
     [SerializeField, TitleGroup("Animation"), ReadOnly] private float m_IdleBreakTimer;
-    private bool m_MustJump;
     private bool m_IsJumping;
     private bool m_IncrementIdleTimer = true;
-    private bool m_Active = true;
+    [SerializeField, ReadOnly] private bool m_Active = true;
     private const float JUMP_MIN_VELOCITY = .05f;
     [ShowInInspector, ReadOnly, TitleGroup("Components")] private bool CanJump
     {
-        get { return m_RB ? !m_MustJump && Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY : false; }
+        get { return m_RB ? Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY : false; }
     }
 
     private void Awake()
@@ -35,8 +35,9 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
+        if (m_Inputs.Menu) SetActive(!m_Active);
         if (!m_Active) return;
-        AuthorizeJump();
+        ManageJump();
 
         if (m_Inputs.Y) KillPlayer();
     }
@@ -92,16 +93,19 @@ public class Player : MonoBehaviour
             m_IdleBreakTimer = 0;
         }
     }
-    private void AuthorizeJump()
+    private void ManageJump()
     {
         if (CanJump && m_Inputs.A) m_Animator.SetTrigger(m_AnimatorJumpStart);
 
-        //Land -> shouldn't be here but oh well
+        //Land
         if (m_IsJumping && Mathf.Abs(m_RB.velocity.y) <= JUMP_MIN_VELOCITY * 10)
         {
             m_Animator.SetTrigger(m_AnimatorJumpEnd);
             m_IsJumping = false;
         }
+        //Speed up fall
+        if (m_RB.velocity.y < 0) m_RB.velocity += Vector3.up * Physics.gravity.y * (m_FallSpeedUp - 1) * Time.deltaTime;
+
     }
     public void Jump()
     {
@@ -124,5 +128,10 @@ public class Player : MonoBehaviour
     public void OnVictory()
     {
         m_Active = false;
+    }
+
+    public void SetActive(bool value)
+    {
+        m_Active = value;
     }
 }

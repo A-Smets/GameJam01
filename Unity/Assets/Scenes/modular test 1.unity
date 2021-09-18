@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1092,6 +1092,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -6.3368793
       objectReference: {fileID: 0}
+    - target: {fileID: 5115941142105979489, guid: d38a8c8cb02536a428dd449e2f372973,
+        type: 3}
+      propertyPath: m_FallSpeedUp
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5211562115882055245, guid: d38a8c8cb02536a428dd449e2f372973,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1338,7 +1343,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080767216}
-  m_LocalRotation: {x: 0.14521316, y: -1.3477156e-10, z: 1.9528228e-11, w: 0.98940045}
+  m_LocalRotation: {x: 0.14521314, y: 0.000000046286054, z: -0.0000000067928982, w: 0.98940045}
   m_LocalPosition: {x: 0, y: 0.2, z: -0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1904,17 +1909,17 @@ PrefabInstance:
     - target: {fileID: 8401867750883199737, guid: 2aa8a391c37ab3a469ca0be07b6fb25a,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.14521314
+      value: 0.14521313
       objectReference: {fileID: 0}
     - target: {fileID: 8401867750883199737, guid: 2aa8a391c37ab3a469ca0be07b6fb25a,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1.348093e-10
+      value: 0.000000046286118
       objectReference: {fileID: 0}
     - target: {fileID: 8401867750883199737, guid: 2aa8a391c37ab3a469ca0be07b6fb25a,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 1.9785718e-11
+      value: -0.0000000067933583
       objectReference: {fileID: 0}
     - target: {fileID: 8401867750914246976, guid: 2aa8a391c37ab3a469ca0be07b6fb25a,
         type: 3}
@@ -1926,6 +1931,16 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 2035578501}
+    - target: {fileID: 8401867750914246976, guid: 2aa8a391c37ab3a469ca0be07b6fb25a,
+        type: 3}
+      propertyPath: m_XAxis.m_MaxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8401867750914246976, guid: 2aa8a391c37ab3a469ca0be07b6fb25a,
+        type: 3}
+      propertyPath: m_YAxis.m_MaxSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8401867750914246977, guid: 2aa8a391c37ab3a469ca0be07b6fb25a,
         type: 3}
       propertyPath: m_Name
