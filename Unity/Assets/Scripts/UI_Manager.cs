@@ -8,6 +8,7 @@ public class UI_Manager : MonoBehaviour
 {
     [SerializeField] private bool m_IsGameScene;
     [SerializeField] private PlayerInputs m_Inputs;
+    [SerializeField] private Player m_Player;
     [SerializeField, TitleGroup("In-Game")] private GameObject m_PauseMenu;
     [SerializeField, TitleGroup("In-Game")] private GameObject m_PauseFirstSelect;
     [SerializeField, TitleGroup("In-Game"), Space(5)] private GameObject m_GameOverMenu;
@@ -46,6 +47,7 @@ public class UI_Manager : MonoBehaviour
 
     private void SetSelected(GameObject selected)
     {
+        m_EventSystem.SetSelectedGameObject(null);
         m_EventSystem.SetSelectedGameObject(selected);
     }
 }
