@@ -197,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsGameScene: 1
   m_Inputs: {fileID: 11400000, guid: 12daec0d4b0cbe84288a6bdbf8660628, type: 2}
+  m_Player: {fileID: 0}
   m_PauseMenu: {fileID: 2411379306646675197}
   m_PauseFirstSelect: {fileID: 2411379308025364587}
   m_GameOverMenu: {fileID: 2411379307382885049}
