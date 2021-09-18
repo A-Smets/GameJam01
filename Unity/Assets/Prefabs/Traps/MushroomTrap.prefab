@@ -373,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 731a297254ac9dd44917469d4662645f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_WasSprung: {fileID: 11400000, guid: a36402bd80e2eea49991ca4e8ba290d0, type: 2}
+  m_WasSprung: {fileID: 0}
   m_TriggerCollider: {fileID: 5032816483977550847}
   m_PlayerLayer: 6
   m_ActivationChance: 1
@@ -439,12 +439,12 @@ PrefabInstance:
     - target: {fileID: 9110939600030488210, guid: b125fe9012f765a478162dde66179e89,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000000059604645
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9110939600030488210, guid: b125fe9012f765a478162dde66179e89,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.049999997
+      value: 0.049999982
       objectReference: {fileID: 0}
     - target: {fileID: 9110939600030488210, guid: b125fe9012f765a478162dde66179e89,
         type: 3}
